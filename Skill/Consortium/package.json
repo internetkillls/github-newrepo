@@ -1,0 +1,16 @@
+{
+  "name": "reasoning-consortium-controller",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Local runtime package for Reasoning Consortium Controller.",
+  "bin": {
+    "rcc-consortium": "bin/rcc-consortium"
+  },
+  "scripts": {
+    "selftest": "node scripts/runtime-selftest.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

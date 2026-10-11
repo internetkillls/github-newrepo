@@ -1,0 +1,16 @@
+{
+  "scope_id": "selected-three-message-excerpt",
+  "requested": "continue AntiSlop verification",
+  "accessible": [
+    {
+      "type": "provided_export",
+      "source_ref": "selected-conversation-excerpt.jsonl",
+      "range": "user-request..user-continue"
+    }
+  ],
+  "missing": [
+    "other turns in thread and prior chats not in this curated excerpt"
+  ],
+  "coverage": "partial",
+  "confidence_basis": "source-anchored"
+}

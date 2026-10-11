@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Geometry Instancing"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-geometry-instancing to complete the relevant visual workflow and preserve evidence."

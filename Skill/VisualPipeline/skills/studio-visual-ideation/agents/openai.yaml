@@ -1,0 +1,4 @@
+interface:
+  display_name: "Studio Visual Ideation"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $studio-visual-ideation to complete the relevant visual workflow and preserve evidence."

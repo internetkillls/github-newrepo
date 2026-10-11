@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Chop Family"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-chop-family to complete the relevant visual workflow and preserve evidence."

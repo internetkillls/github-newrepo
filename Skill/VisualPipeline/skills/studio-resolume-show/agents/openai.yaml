@@ -1,0 +1,4 @@
+interface:
+  display_name: "Studio Resolume Show"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $studio-resolume-show to complete the relevant visual workflow and preserve evidence."

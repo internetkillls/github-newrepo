@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Network Cleanup"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-network-cleanup to complete the relevant visual workflow and preserve evidence."

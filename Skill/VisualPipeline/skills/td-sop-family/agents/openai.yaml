@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Sop Family"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-sop-family to complete the relevant visual workflow and preserve evidence."

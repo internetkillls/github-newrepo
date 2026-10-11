@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Review Network"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-review-network to complete the relevant visual workflow and preserve evidence."

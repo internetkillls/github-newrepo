@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Lister Ui"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-lister-ui to complete the relevant visual workflow and preserve evidence."

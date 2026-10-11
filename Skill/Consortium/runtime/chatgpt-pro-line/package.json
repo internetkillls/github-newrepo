@@ -1,0 +1,7 @@
+{
+  "name": "rcc-vendored-chatgpt-pro-line",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Vendored MIT ChatGPT Pro Line transport used by Reasoning Consortium Controller v0.2."
+}

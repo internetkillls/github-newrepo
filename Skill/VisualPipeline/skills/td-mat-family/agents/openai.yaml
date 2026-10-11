@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Mat Family"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-mat-family to complete the relevant visual workflow and preserve evidence."

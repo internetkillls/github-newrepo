@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Performance Check"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-performance-check to complete the relevant visual workflow and preserve evidence."

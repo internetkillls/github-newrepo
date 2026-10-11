@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reasoning Method Controller"
+  short_description: "Audit bukti, inferensi, probe, dan verifikasi"
+  default_prompt: "Gunakan $reasoning-method-controller untuk memeriksa tujuan, bukti, asumsi, alternatif, dan verifikasi tugas ini."

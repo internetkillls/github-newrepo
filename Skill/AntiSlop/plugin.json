@@ -1,0 +1,28 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "antislop",
+  "version": "0.3.1",
+  "description": "Evidence-anchored chat indexing, self-recap, explicit decision and question transitions, nine-domain anti-slop audits, and regression checks.",
+  "author": {
+    "name": "Plugin owner"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "AntiSlop",
+        "shortDescription": "Audit context and outputs",
+        "longDescription": "Index accessible transcripts; reconcile questions, approvals, corrections and their provenance before auditing search, prose, concepts, Indonesian, naming, code, arguments and mathematics. Includes cross-plugin intent-substitution and unsupported-curriculum regression cases.",
+        "developerName": "Plugin owner",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive"
+        ],
+        "defaultPrompt": [
+          "Audit this conversation for question drift, unsupported commitments, and slop. Summarize only accessible context.",
+          "Check my draft against the nine AntiSlop classes, showing evidence and minimal repairs.",
+          "Review this failed answer and convert the proven defect into a regression case."
+        ]
+      }
+    }
+  }
+}

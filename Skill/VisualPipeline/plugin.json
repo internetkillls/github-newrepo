@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "joshuagabrielagathon@gmail.com",
+    "name": "J. G. Agathon"
+  },
+  "description": "Personal generative visual studio workflow with adapted TouchDesigner skills.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "category": "Productivity",
+        "defaultPrompt": "Bantu saya membuat portofolio dan loop visual cube empat sisi 1800x1080 untuk Resolume Arena, mulai dari tema dan spesifikasi yang dapat diperiksa.",
+        "developerName": "J. G. Agathon",
+        "displayName": "Visual Pipeline",
+        "longDescription": "Ideation, measurable specifications, TouchDesigner skills, target handoffs for Blender and p5.js, seamless cube loops, and Resolume show delivery. Includes offline validation and project catalog helpers. Application connections are configured separately.",
+        "shortDescription": "Cube visuals & loop workflow"
+      }
+    }
+  },
+  "name": "bali-visual-pipeline",
+  "version": "1.0.1"
+}

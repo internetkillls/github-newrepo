@@ -17,23 +17,23 @@ These are research directions and design aims, not claims that the packages elim
 
 | Archive | Role in the collection |
 | --- | --- |
-| `Skill/Reasoning.zip` | Reasoning Method Controller: routes complex tasks through staged framing, evidence, testing, provenance, and repair. |
-| `Skill/Coursecraft Lab.zip` | Course design and tutoring with source-grounded examples, practical learning, and learner evidence. |
-| `Skill/AntiSlop (2).zip` | Conversation reconstruction, scoped output audits, and regression checks for recurring failure patterns. |
-| `Skill/Consortium.zip` | Reasoning Consortium Controller: partitions complex work into bounded roles and defines closure and merge rules. |
-| `Skill/VisualPipeline (2).zip` | Visual ideation and production workflows; included as an adjacent experiment in making intent and outcomes inspectable through visual work. |
+| `Skill/Reasoning/` | Reasoning Method Controller: routes complex tasks through staged framing, evidence, testing, provenance, and repair. |
+| `Skill/Coursecraft-Lab/` | Course design and tutoring with source-grounded examples, practical learning, and learner evidence. |
+| `Skill/AntiSlop/` | Conversation reconstruction, scoped output audits, and regression checks for recurring failure patterns. |
+| `Skill/Consortium/` | Reasoning Consortium Controller: partitions complex work into bounded roles and defines closure and merge rules. |
+| `Skill/VisualPipeline/` | Visual ideation and production workflows; included as an adjacent experiment in making intent and outcomes inspectable through visual work. |
 
 The collection's conceptual core is reasoning, learning interaction, and output auditing. Consortium orchestration supports independent checking. Visual Pipeline is an adjacent domain package, not evidence for general claims about human–AI reasoning.
 
 ## Repository state
 
-This repository currently preserves the packages as ZIP archives. The table above describes their intended roles from the included package metadata and READMEs. It does not claim that every package has been installed or tested from this repository.
+This repository stores the package files in folders so individual documents, code, tests, and references can be reviewed and versioned. Each package's own README describes its intended use. This repository does not claim that every package has been installed or tested from here.
 
 Before unpacking or redistributing a package, read its own README, attribution, and license files. The packages contain distinct licensing and attribution terms; this repository does not add a blanket license over their contents. In particular, the public `Reasoning.zip` snapshot includes reference and conversation-derived materials. Check individual rights and privacy before making future releases or repackaging it.
 
 ## Suggested review path
 
-1. Read this overview and the README inside the archive you plan to use.
+1. Read this overview and the README inside the package folder you plan to use.
 2. Check its requirements, limitations, attribution, and license.
 3. Treat generated or model-produced interpretations as proposals until checked against the original question and relevant evidence.
 4. Record changes in Git with a short commit message that explains what changed.

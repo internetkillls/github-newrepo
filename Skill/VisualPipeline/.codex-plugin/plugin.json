@@ -1,0 +1,20 @@
+{
+  "interface": {
+    "category": "Productivity",
+    "defaultPrompt": "Bantu saya membuat portofolio dan loop visual cube empat sisi 1800x1080 untuk Resolume Arena, mulai dari tema dan spesifikasi yang dapat diperiksa.",
+    "developerName": "J. G. Agathon",
+    "displayName": "Visual Pipeline",
+    "longDescription": "Ideation, measurable specifications, TouchDesigner skills, target handoffs for Blender and p5.js, seamless cube loops, and Resolume show delivery. Includes offline validation and project catalog helpers. Application connections are configured separately.",
+    "shortDescription": "Cube visuals & loop workflow",
+    "capabilities": []
+  },
+  "name": "bali-visual-pipeline",
+  "version": "1.0.1",
+  "description": "Personal generative visual studio workflow with adapted TouchDesigner skills.",
+  "author": {
+    "name": "J. G. Agathon",
+    "email": "joshuagabrielagathon@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

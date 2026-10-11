@@ -1,0 +1,12 @@
+{
+  "name": "reasoning-consortium-controller",
+  "interface": {"displayName": "Reasoning Consortium Controller"},
+  "plugins": [
+    {
+      "name": "reasoning-consortium-controller",
+      "source": {"source": "local", "path": "."},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Developer Tools"
+    }
+  ]
+}

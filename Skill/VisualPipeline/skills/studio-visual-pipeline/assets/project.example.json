@@ -1,0 +1,92 @@
+{
+  "schema_version": "studio-project/1.0",
+  "project_id": "bali-cube-pilot",
+  "requirements_status": "confirmed_room_draft_recipe_and_schedule",
+  "canvas": {
+    "face_count": 4,
+    "width": 1800,
+    "height": 1080,
+    "packing": "linear"
+  },
+  "timing": {
+    "fps": 30,
+    "frame_count": 360,
+    "clock": "explicit_frame_index"
+  },
+  "recipe": {
+    "id": "studio-cube-perimeter-ribbons",
+    "version": "1.0.0",
+    "seed": 1,
+    "parameters": {
+      "ribbon_count": 8,
+      "band_span": 0.5,
+      "amplitude": 0.05,
+      "stroke_width": 0.01,
+      "spatial_harmonic": 4,
+      "temporal_cycles": 1
+    },
+    "palette": [
+      "#10131A",
+      "#CF8964",
+      "#86A69A",
+      "#E8DCC0"
+    ]
+  },
+  "targets": [
+    "touchdesigner",
+    "blender",
+    "p5js"
+  ],
+  "adapters": {
+    "touchdesigner": {
+      "version": "plan-only/1.0.0",
+      "engine_build": null,
+      "runtime_verified": false,
+      "fidelity": "semantic_sibling"
+    },
+    "blender": {
+      "version": "plan-only/1.0.0",
+      "engine_build": null,
+      "runtime_verified": false,
+      "fidelity": "semantic_sibling"
+    },
+    "p5js": {
+      "version": "plan-only/1.0.0",
+      "engine_build": null,
+      "runtime_verified": false,
+      "fidelity": "semantic_sibling"
+    }
+  },
+  "assets": [],
+  "show": {
+    "timezone": null,
+    "start": "22:00",
+    "end": "04:00",
+    "theme_id": null,
+    "boundaries_approved": false,
+    "sessions": [
+      {
+        "id": "opening",
+        "start_offset": 0,
+        "end_offset": 3600
+      },
+      {
+        "id": "warming_up",
+        "start_offset": 3600,
+        "end_offset": 9000
+      },
+      {
+        "id": "party_peak",
+        "start_offset": 9000,
+        "end_offset": 18000
+      },
+      {
+        "id": "farewell",
+        "start_offset": 18000,
+        "end_offset": 21600
+      }
+    ]
+  },
+  "physical_mapping": null,
+  "design_approved": false
+}

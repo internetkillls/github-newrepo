@@ -1,0 +1,25 @@
+{
+  "interface": {
+    "displayName": "Reasoning Method Controller",
+    "shortDescription": "Route \u2192 stage \u2192 operator reasoning control",
+    "longDescription": "Routes complex reasoning through explicit route families and a conditional stage machine: intake, route, frame, decompose, operate, test, evidence/world, integrate, closure, and delivery. Failure signatures select operators inside stages rather than acting as the whole workflow. Every stage has an entry gate, guardrails, exit test, and handoff; satisfied stages may be skipped, failed dependencies trigger repair at the earliest stage. Retains semantic descent, orientation-bundle and umbrella mapping, provenance/transport controls, world-remap, interaction discipline, formalization gates, dual closure, and APA academic citation controls.",
+    "developerName": "J. G. Agathon",
+    "category": "Productivity",
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Gunakan reasoning-method-controller: pertahankan pertanyaan akar, pisahkan sumber metode dari sumber objek, dan telusuri literatur dari objek target.",
+      "Rekonstruksi argumen ini; tandai perubahan makna, sumber per klaim, teori rival, dan hutang pembuktian.",
+      "Bantu proyek coding ini dengan bukti repo/runtime, asumsi yang menentukan desain, probe kecil, dan verifikasi."
+    ],
+    "capabilities": []
+  },
+  "name": "reasoning-method-controller",
+  "version": "0.6.1",
+  "description": "A staged reasoning controller that routes tasks through explicit route families, conditional stages, failure-signature operators, evidence/provenance gates, discriminating tests, repair loops, and dual closure.",
+  "author": {
+    "name": "J. G. Agathon"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

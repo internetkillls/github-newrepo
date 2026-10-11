@@ -1,0 +1,3 @@
+# Cross-plugin intent routing regression (reported, unexecuted)
+
+Origin: user-supplied audit of previous TikTok/creator-revenue exchange. Scope is the available audit, not a verbatim export of full underlying turns. Hypothesized root dependency: latest question versus course-building mode handoff. For cases IR-01..IR-06, preserve expected response, collect exact model output, mark observed/reproduced/adjudicated only after review, include two negative controls, and compare no-plugin/RMC-only/Coursecraft-only/multi-plugin runs when feasible. Reopen when a model outputs an unrequested multiweek course or refuses an explicitly requested learning artifact.

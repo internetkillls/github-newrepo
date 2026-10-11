@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Build Planning"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-build-planning to complete the relevant visual workflow and preserve evidence."

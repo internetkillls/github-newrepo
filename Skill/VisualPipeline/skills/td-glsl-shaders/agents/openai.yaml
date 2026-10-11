@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Glsl Shaders"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-glsl-shaders to complete the relevant visual workflow and preserve evidence."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Td Comp Architecture"
+  short_description: "Workflow visual, verified and repeatable"
+  default_prompt: "Use $td-comp-architecture to complete the relevant visual workflow and preserve evidence."

@@ -1,0 +1,26 @@
+{
+  "interface": {
+    "capabilities": [
+      "Interactive"
+    ],
+    "category": "Education",
+    "defaultPrompt": [
+      "Build my first visual-first course on a subject and begin Lesson 1 with a runnable mirroring lab.",
+      "Resume my course from this learning contract and teach the next lesson.",
+      "Find authentic graded assignments and examples, then help me prototype the matching skills."
+    ],
+    "developerName": "J. G. Agathon",
+    "displayName": "Coursecraft Lab",
+    "longDescription": "Plans and teaches foundational-to-advanced courses through visual explanations, source-verified examples, mirror-build-modify labs, authentic assignments, and exportable cross-session learning contracts. When invoked for an exploratory question, answers that question first without converting it into an unsolicited curriculum.",
+    "shortDescription": "Visual-first course builder"
+  },
+  "name": "coursecraft-lab",
+  "version": "0.4.1",
+  "description": "Create and resume visual-first, project-based courses for practical and academic subjects with verified examples, mirroring labs, assessments, and portable learning contracts.",
+  "author": {
+    "name": "J. G. Agathon",
+    "email": "joshuagabrielagathon@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}
