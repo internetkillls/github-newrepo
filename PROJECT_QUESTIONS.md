@@ -1,12 +1,12 @@
-# Pertanyaan Terbuka: Kritik dan Masalah Proyek
+# Open Questions: Project Critique and Problems
 
-Dokumen ini menampung pertanyaan untuk penyelidikan dan revisi proyek. Pertanyaan bukan temuan atau klaim bahwa suatu kegagalan telah terbukti. Jawaban yang kelak ditambahkan perlu menunjuk bukti, versi, konteks penggunaan, dan kondisi yang dapat mengubah kesimpulannya.
+This document collects questions for investigation and revision. Questions are not findings, nor claims that a failure has been proven. Answers added later should point to evidence, versions, usage contexts, and conditions that could change the conclusion.
 
-## Potret repo yang diperiksa
+## Repository snapshot
 
-Snapshot lokal pada `2026-10-11`, commit `0800d3a`:
+Local snapshot on `2026-10-11`, commit `0800d3a`:
 
-| Paket | Versi pada `plugin.json` | File dalam folder |
+| Package | Version in `plugin.json` | Files in folder |
 | --- | ---: | ---: |
 | Reasoning Method Controller | 0.6.1 | 491 |
 | Coursecraft Lab | 0.4.1 | 23 |
@@ -14,88 +14,88 @@ Snapshot lokal pada `2026-10-11`, commit `0800d3a`:
 | Reasoning Consortium Controller | 0.2.0 | 88 |
 | Visual Pipeline | 1.0.1 | 93 |
 
-Jumlah file dihitung dari folder hasil ekstraksi, termasuk teks, kode, gambar, PDF, tes, dan konfigurasi. Versi berasal dari metadata lokal paket; tabel ini bukan pemeriksaan apakah versi tersebut masih terbaru di upstream. ZIP sumber tetap di mesin lokal dan dikecualikan dari commit baru. Riwayat Git sebelumnya masih memuat commit yang pernah menyimpan ZIP.
+File counts include text, code, images, PDFs, tests, and configuration. Versions come from local package metadata; this table does not establish whether they are still current upstream. The source ZIPs remain on the local machine and are excluded from new commits. Earlier Git history still contains the commit that tracked the ZIPs.
 
-## 1. Tujuan dan batas masalah
+## 1. Purpose and problem boundaries
 
-- Masalah pengguna seperti apa yang ingin dibantu proyek ini: interpretasi maksud, pembentukan masalah, ideasi, evaluasi solusi, atau lebih dari satu tahap itu?
-- Bagaimana proyek membedakan kegagalan model dari masalah pada prompt, konteks, antarmuka, sumber, atau ekspektasi pengguna?
-- Apa batas klaim yang dapat dibuat repo ini tentang “bias” atau “penalaran” model tanpa akses ke proses internal model?
-- Kondisi apa yang akan menunjukkan bahwa pendekatan proyek tidak membantu pengguna merumuskan atau menyelesaikan masalah?
-- Apakah seluruh paket saat ini diperlukan untuk tujuan inti, dan bukti apa yang menentukan bahwa sebuah paket termasuk inti atau hanya berdekatan?
+- What user problems should this project help with: interpreting intent, framing a problem, ideation, evaluating a solution, or several of these stages?
+- How can the project distinguish a model failure from a problem with the prompt, context, interface, sources, or user expectations?
+- What claims can the repository make about model “bias” or “reasoning” without access to the model's internal process?
+- What evidence would show that the approach is not helping users formulate or solve problems?
+- Which current packages are necessary for the project's core purpose, and what evidence determines whether a package is core or adjacent?
 
-## 2. Interpretasi, ideasi, dan pembentukan masalah
+## 2. Interpretation, ideation, and problem framing
 
-- Bagaimana sistem mengetahui kapan harus meminta klarifikasi dan kapan sebaiknya mengajukan beberapa tafsir yang dapat dibandingkan?
-- Bagaimana ia membedakan ideasi awal, definisi masalah, kendala, hipotesis, dan keputusan yang sudah disetujui pengguna?
-- Bagaimana pengguna dapat mengoreksi interpretasi model dengan biaya rendah sebelum interpretasi itu menjadi dasar rekomendasi atau tindakan?
-- Seberapa sering model mengganti masalah pengguna dengan masalah yang lebih mudah dijawab, dan bagaimana kejadian itu akan dicatat?
-- Bukti apa yang dapat membedakan klarifikasi yang membantu dari pertanyaan tambahan yang hanya memperlambat pekerjaan?
+- How should a system decide when to ask for clarification and when to present several interpretations for comparison?
+- How can it distinguish early ideation, problem definition, constraints, hypotheses, and decisions the user has approved?
+- How can users correct a model's interpretation at low cost before it becomes the basis for a recommendation or action?
+- How often does a model replace the user's problem with an easier one, and how should that event be recorded?
+- What evidence could distinguish helpful clarification from extra questions that only slow the work down?
 
 ## 3. Reasoning Method Controller
 
-- Dalam jenis tugas apa tahapan, pemeriksaan bukti, dan perbaikan ketergantungan paling meningkatkan hasil; dalam tugas apa justru menambah beban?
-- Apakah pemeriksaan terhadap pesaing, contoh negatif, dan kondisi yang dapat membalik kesimpulan berhasil menemukan kesalahan yang lolos dari jawaban awal?
-- Bagaimana pengguna dapat melihat asal-usul klaim dan asumsi tanpa menerima penjelasan panjang yang tidak dapat diverifikasi?
-- Apakah konsep “perbaiki ketergantungan paling awal yang gagal” menghasilkan koreksi yang lebih tepat daripada memperbaiki jawaban akhir saja?
-- Kegagalan apa yang masih terjadi ketika model mengikuti prosedur yang tertulis dengan benar tetapi salah memahami domain atau tujuan manusia?
+- For which tasks do stages, evidence checks, and dependency repair improve results, and for which tasks do they add unnecessary work?
+- Do checks for rival explanations, negative cases, and conclusion-changing conditions find errors that survive the initial answer?
+- How can users inspect the origin of claims and assumptions without receiving lengthy explanations they cannot verify?
+- Does “repair the earliest failed dependency” produce better corrections than revising only the final answer?
+- What failures remain when a model follows the written procedure but misunderstands the domain or the person's goal?
 
-## 4. Coursecraft Lab dan interaksi belajar
+## 4. Coursecraft Lab and learning interactions
 
-- Apakah bentuk visual atau interaktif membantu pengguna mendeteksi perbedaan antara maksudnya dan tafsir model? Pada tugas dan pengguna yang mana?
-- Performa apa yang menunjukkan pemahaman mandiri, bukan sekadar keberhasilan meniru contoh?
-- Bagaimana materi memberi dukungan bagi pengguna yang memakai teknologi bantu atau lebih nyaman dengan penjelasan teks?
-- Bagaimana Coursecraft membedakan sumber bidang, metode pengajaran, contoh latihan, dan hasil buatan model?
-- Apakah latihan transfer mengungkap pemahaman yang bertahan saat konteks atau alat berubah?
+- Do visual or interactive forms help users detect differences between their intent and the model's interpretation? For which tasks and users?
+- What performance would demonstrate independent understanding rather than successful imitation of an example?
+- How should lessons support people using assistive technology or preferring text explanations?
+- How does Coursecraft distinguish field sources, teaching methods, practice examples, and model-generated results?
+- Do transfer exercises reveal understanding that persists when the context or tool changes?
 
-## 5. AntiSlop dan guardrail
+## 5. AntiSlop and guardrails
 
-- Jenis kegagalan keluaran mana yang paling sering terjadi pada penggunaan nyata, dan mana yang paling merugikan pengguna?
-- Seberapa baik aturan eksplisit mendeteksi kegagalan itu tanpa menandai variasi bahasa atau gaya yang sebenarnya berguna?
-- Bagaimana corpus regresi memperoleh contoh yang berizin, representatif, dan cukup beragam tanpa mengumpulkan percakapan pribadi berlebihan?
-- Bagaimana tingkat salah-positif dan salah-negatif diukur untuk tiap pemeriksaan?
-- Apa yang terjadi ketika guardrail bertentangan dengan kebutuhan domain, bahasa, atau instruksi pengguna yang sah?
+- Which output failures occur most often in real use, and which cause the greatest harm to users?
+- How well do explicit rules detect those failures without flagging useful differences in language or style?
+- How can regression examples be collected with permission and enough diversity without retaining excessive private conversation data?
+- How should false-positive and false-negative rates be measured for each check?
+- What happens when a guardrail conflicts with domain needs, language, or a valid user instruction?
 
 ## 6. Reasoning Consortium Controller
 
-- Masalah mana yang benar-benar mendapat manfaat dari analisis terpisah, dan kapan beberapa worker hanya mengulang asumsi atau kesalahan yang sama?
-- Bagaimana independensi tiap worker diuji, bukan hanya dinyatakan dalam desain tugas?
-- Kriteria apa yang membuat sebuah hasil layak digabung, dipertahankan sebagai konflik, atau dibuka kembali setelah bukti baru?
-- Dalam penggunaan nyata, apakah biaya konteks, waktu, dan kompleksitas orkestrasi sebanding dengan peningkatan kualitas keputusan?
-- Bukti runtime apa yang diperlukan sebelum mengklaim eksekusi paralel atau isolasi antar-worker?
+- Which problems benefit from separate analyses, and when do multiple workers merely repeat the same assumptions or errors?
+- How can worker independence be tested rather than simply stated in the task design?
+- What criteria should determine whether results are merged, preserved as disagreements, or reopened after new evidence arrives?
+- In real use, are the context, time, and orchestration costs justified by better decisions?
+- What runtime evidence is needed before claiming parallel execution or isolation between workers?
 
-## 7. Visual Pipeline sebagai paket berdekatan
+## 7. Visual Pipeline as an adjacent package
 
-- Hubungan apa yang dapat dibuktikan antara pipeline visual dan tujuan utama repo tentang interpretasi serta pemecahan masalah manusia–AI?
-- Apakah paket ini berfungsi sebagai contoh interaksi visual yang dapat dipindahkan ke domain lain, atau tetap merupakan alur kerja kreatif khusus?
-- Konsep dan artefak mana yang dapat dibagikan lintas paket tanpa menyamakan kebutuhan visual dengan bukti reasoning?
-- Apakah repo sebaiknya mempertahankan paket ini sebagai eksperimen berdekatan, memindahkannya ke repo lain, atau menjelaskan keterkaitannya dengan lebih spesifik?
+- What relationship can be demonstrated between the visual pipeline and the repository's central goal of human–AI interpretation and problem-solving?
+- Does this package provide an example of visual interaction that transfers to other domains, or does it remain a specialized creative workflow?
+- Which concepts and artifacts can be shared across packages without treating visual needs as evidence of reasoning quality?
+- Should this package remain as an adjacent experiment, move to another repository, or have its relationship explained more specifically?
 
-## 8. Data, evaluasi, dan pembaruan
+## 8. Data, evaluation, and updates
 
-- Unit analisis apa yang paling berguna: giliran percakapan, perubahan pemahaman pengguna, keputusan, artefak akhir, atau proses perbaikannya?
-- Dataset seperti apa yang dapat menguji interpretasi, ideasi, dan problem-solving tanpa menyamakan kefasihan dengan kebenaran?
-- Bagaimana anotator menyepakati maksud pengguna ketika permintaan memang ambigu atau berubah selama interaksi?
-- Apa pembanding yang adil: jawaban satu model, beberapa model, pengguna tanpa bantuan, atau alur kerja alternatif?
-- Bagaimana perubahan versi model dan paket dicatat agar hasil lama tidak dianggap berlaku untuk versi baru?
-- Metrik apa yang dapat dipakai bersama, dan bagian mana yang harus tetap dinilai melalui penjelasan atau artefak manusia?
+- Which unit of analysis is most useful: a conversation turn, a change in user understanding, a decision, the final artifact, or the repair process?
+- What dataset could test interpretation, ideation, and problem-solving without equating fluency with correctness?
+- How can annotators agree on user intent when a request is genuinely ambiguous or changes during interaction?
+- What is a fair comparison: one model's answer, several models, users without assistance, or an alternative workflow?
+- How should model and package version changes be recorded so results from older versions are not assumed to apply to newer ones?
+- Which measures can be shared, and which aspects should remain assessed through human explanations or artifacts?
 
-## 9. Privasi, lisensi, dan distribusi
+## 9. Privacy, licensing, and distribution
 
-- Materi mana di setiap paket yang berasal dari pihak ketiga, percakapan, atau konteks personal, dan izin apa yang berlaku untuk distribusi publik?
-- Apa proses yang akan digunakan untuk memeriksa lisensi pada PDF, kode vendored, atribusi, dan contoh percakapan sebelum rilis?
-- Informasi apa yang perlu disunting atau dikeluarkan sebelum versi publik baru dibuat?
-- Apakah ZIP lama dalam riwayat Git memuat materi yang perlu dihapus dari riwayat, dan bagaimana dampak penulisan ulang riwayat terhadap salinan atau fork yang sudah ada?
-- Bagaimana pengguna dapat melaporkan materi sensitif atau masalah hak cipta dan meminta koreksi?
+- Which materials in each package come from third parties, conversations, or personal context, and what permissions govern public distribution?
+- What process should check licenses for PDFs, vendored code, attribution, and conversation examples before a release?
+- What information should be redacted or removed before future public versions are made?
+- Do the old ZIPs in Git history contain material that should be removed from history, and how would rewriting history affect existing copies or forks?
+- How can users report sensitive material or copyright concerns and request a correction?
 
-## 10. Struktur dan tata kelola repo
+## 10. Repository structure and governance
 
-- Apakah folder paket hasil ekstraksi sebaiknya tetap disalin ke repo ini atau dirujuk sebagai repositori upstream dengan versi dan checksum?
-- Bagaimana repo membedakan salinan upstream, modifikasi lokal, dan materi tambahan agar perubahan asal dapat ditelusuri?
-- Kapan perubahan paket harus dibuat sebagai commit lokal, kapan sebagai fork, dan kapan sebagai kontribusi upstream?
-- Siapa yang memutuskan bahwa paket atau eksperimen baru sesuai dengan tujuan repo?
-- Bagaimana rilis, changelog, dan keputusan penting akan dicatat tanpa membuat dokumen administratif menggantikan bukti penggunaan?
+- Should package folders remain copied into this repository, or should they point to upstream repositories with pinned versions and checksums?
+- How can the repository distinguish upstream copies, local modifications, and added material so that changes remain traceable?
+- When should a package change be a local commit, a fork, or an upstream contribution?
+- Who decides whether a new package or experiment fits the repository's purpose?
+- How should releases, changelogs, and important decisions be recorded without letting administration replace evidence from actual use?
 
-## Cara menutup pertanyaan
+## Closing an investigation
 
-Untuk setiap pertanyaan yang diteliti, catat: jawaban sementara, bukti dan versinya, konteks yang diperiksa, penjelasan alternatif, batas kesimpulan, serta temuan apa yang akan mengubah jawaban. Biarkan pertanyaan tetap terbuka bila bukti belum cukup.
+For each question investigated, record the provisional answer, evidence and version, context examined, alternative explanations, limits of the conclusion, and what finding would change the answer. Leave the question open when evidence is insufficient.
