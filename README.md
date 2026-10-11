@@ -1,15 +1,17 @@
-# Human–AI Reasoning Lab
+# Human–AI Workbench
 
-An experimental collection for studying how people and language models can interpret, frame, and solve problems together.
+A modular toolkit for human–AI work: problem framing, evidence-grounded reasoning, learning design, output review, collaborative analysis, and visual production.
 
-Many problems are not fully formed when a person first describes them. They may need interpretation, concept clarification, or ideation before they can be expressed as a shared problem. This repository collects tools that explore those steps and the limits of treating a fluent model response as a reliable problem-solving result.
+Many problems need interpretation, concept clarification, or ideation before a person and a model can work on them together. This repository brings together skill packages and local scripts that support those tasks. The tools structure and inspect work; they do not guarantee that a model's answer is correct or unbiased.
 
 ## Focus
 
-- **Reasoning and problem framing:** surface ambiguous concepts, assumptions, evidence, and the consequences of inference before relying on an answer as a basis for action.
-- **Learning and interaction:** explore visual, interactive, and course-based ways to help people inspect a model's interpretation and compare it with their own intent.
-- **Output quality:** develop explicit checks and regression examples for recurring AI output failures, including unsupported claims, question drift, and unhelpful prose.
-- **Collaborative reasoning:** experiment with bounded independent analyses, evidence checks, and explicit synthesis for problems where one pass is not enough.
+- **Frame:** clarify a request, its concepts, assumptions, constraints, and success criteria.
+- **Reason:** organize evidence, provenance, rival explanations, tests, and repair steps.
+- **Teach and interact:** create source-grounded courses and make interpretations easier to inspect through visual or practical work.
+- **Review:** reconstruct conversation state, audit outputs, and maintain regression examples for recurring failures.
+- **Coordinate:** divide complex work into bounded roles and merge results using explicit criteria.
+- **Build visual work:** plan, validate, and package creative visual projects for supported workflows.
 
 These are research directions and design aims, not claims that the packages eliminate model bias or guarantee correct answers.
 
@@ -17,17 +19,17 @@ These are research directions and design aims, not claims that the packages elim
 
 | Archive | Role in the collection |
 | --- | --- |
-| `Skill/Reasoning/` | Reasoning Method Controller: routes complex tasks through staged framing, evidence, testing, provenance, and repair. |
-| `Skill/Coursecraft-Lab/` | Course design and tutoring with source-grounded examples, practical learning, and learner evidence. |
-| `Skill/AntiSlop/` | Conversation reconstruction, scoped output audits, and regression checks for recurring failure patterns. |
-| `Skill/Consortium/` | Reasoning Consortium Controller: partitions complex work into bounded roles and defines closure and merge rules. |
-| `Skill/VisualPipeline/` | Visual ideation and production workflows; included as an adjacent experiment in making intent and outcomes inspectable through visual work. |
+| `Skill/Reasoning/` | Reasoning Method Controller (0.6.1): staged task framing, evidence and provenance controls, source lookup, discriminating tests, and repair. Its `source_lookup.py` lists, searches, and reads the bundled source corpus offline. |
+| `Skill/Coursecraft-Lab/` | Coursecraft Lab (0.4.1): course design, source scouting, lessons, and learner-evidence workflows. `build_research_links.py` creates public search links from a subject term and outcome; it does not fetch or verify results. |
+| `Skill/AntiSlop/` | AntiSlop (0.3.1): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
+| `Skill/Consortium/` | Reasoning Consortium Controller (0.2.0): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
+| `Skill/VisualPipeline/` | Visual Pipeline (1.0.1): visual ideation, TouchDesigner guidance, and handoffs to Blender and p5.js. `studio.py` validates project specifications and can generate build plans, calculate show cues, and maintain a local SQLite catalog. It is an offline helper, not a renderer or show player. |
 
-The collection's conceptual core is reasoning, learning interaction, and output auditing. Consortium orchestration supports independent checking. Visual Pipeline is an adjacent domain package, not evidence for general claims about human–AI reasoning.
+Together, the packages cover framing, reasoning, learning, output review, coordination, and visual project workflows. The Visual Pipeline applies those ideas in a specific creative-production domain; it does not by itself validate general claims about human–AI reasoning.
 
 ## Repository state
 
-This repository stores the package files in folders so individual documents, code, tests, and references can be reviewed and versioned. Each package's own README describes its intended use. This repository does not claim that every package has been installed or tested from here.
+This repository stores the package files in folders so individual documents, scripts, tests, and references can be reviewed and versioned. Each package's own README describes its intended use and requirements. The tools are not all wired into one application, and this repository does not claim that every package has been installed or runtime-tested from here.
 
 Before unpacking or redistributing a package, read its own README, attribution, and license files. The packages contain distinct licensing and attribution terms; this repository does not add a blanket license over their contents. In particular, the public `Reasoning.zip` snapshot includes reference and conversation-derived materials. Check individual rights and privacy before making future releases or repackaging it.
 
@@ -40,4 +42,4 @@ Before unpacking or redistributing a package, read its own README, attribution, 
 
 ## Name
 
-`human-ai-reasoning-lab` describes the collection's central concern while leaving room for experiments in problem framing, teaching, interaction, and evaluation.
+`human-ai-workbench` describes the shared functions while leaving room for additional human–AI workflows.
