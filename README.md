@@ -19,11 +19,11 @@ These are research directions and design aims, not claims that the packages elim
 
 | Archive | Role in the collection |
 | --- | --- |
-| `Skill/Reasoning/` | Reasoning Method Controller (0.6.1): staged task framing, evidence and provenance controls, source lookup, discriminating tests, and repair. Its `source_lookup.py` lists, searches, and reads the bundled source corpus offline. |
-| `Skill/Coursecraft-Lab/` | Coursecraft Lab (0.4.1): course design, source scouting, lessons, and learner-evidence workflows. `build_research_links.py` creates public search links from a subject term and outcome; it does not fetch or verify results. |
-| `Skill/AntiSlop/` | AntiSlop (0.3.1): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
-| `Skill/Consortium/` | Reasoning Consortium Controller (0.2.0): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
-| `Skill/VisualPipeline/` | Visual Pipeline (1.0.1): visual ideation, TouchDesigner guidance, and handoffs to Blender and p5.js. `studio.py` validates project specifications and can generate build plans, calculate show cues, and maintain a local SQLite catalog. It is an offline helper, not a renderer or show player. |
+| `Skill/Reasoning-0.6.1/` | Reasoning Method Controller (0.6.1): staged task framing, evidence and provenance controls, source lookup, discriminating tests, and repair. Its `source_lookup.py` lists, searches, and reads the bundled source corpus offline. |
+| `Skill/Coursecraft-Lab-0.4.1/` | Coursecraft Lab (0.4.1): course design, source scouting, lessons, and learner-evidence workflows. `build_research_links.py` creates public search links from a subject term and outcome; it does not fetch or verify results. |
+| `Skill/AntiSlop-0.3.1/` | AntiSlop (0.3.1): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
+| `Skill/Consortium-0.2.0/` | Reasoning Consortium Controller (0.2.0): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
+| `Skill/VisualPipeline-1.0.1/` | Visual Pipeline (1.0.1): visual ideation, TouchDesigner guidance, and handoffs to Blender and p5.js. `studio.py` validates project specifications and can generate build plans, calculate show cues, and maintain a local SQLite catalog. It is an offline helper, not a renderer or show player. |
 
 Together, the packages cover framing, reasoning, learning, output review, coordination, and visual project workflows. The Visual Pipeline applies those ideas in a specific creative-production domain; it does not by itself validate general claims about human–AI reasoning.
 
@@ -43,3 +43,4 @@ Before unpacking or redistributing a package, read its own README, attribution, 
 ## Name
 
 `human-ai-workbench` describes the shared functions while leaving room for additional human–AI workflows.
+
