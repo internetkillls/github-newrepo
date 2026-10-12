@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Aransir track MIDI multi-kanal dengan kurva velocity dan automasi CC yang ekspresif."
+  displayName: "MIDI Arrangement Specialist"

@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Hubungkan asisten AI ke tool pipeline audio lewat Model Context Protocol (MCP)."
+  displayName: "MCP Audio Bridge Specialist"

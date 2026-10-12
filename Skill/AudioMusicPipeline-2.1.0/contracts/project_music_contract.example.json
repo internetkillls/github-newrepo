@@ -1,0 +1,94 @@
+{
+  "version": "2.1.0",
+  "project_id": "proj_bali_echoes_2026",
+  "title": "Echoes of Uluwatu",
+  "time_transport": {
+    "bpm": 124.0,
+    "meter_numerator": 4,
+    "meter_denominator": 4,
+    "ticks_per_quarter": 480,
+    "total_bars": 8
+  },
+  "harmonic_system": {
+    "scale_root": "D",
+    "scale_mode": "dorian",
+    "tuning_cents_a4": 440.0,
+    "chord_progression": [
+      { "bar": 1, "degree": "i", "chord_symbol": "Dm7", "bass_note": "D", "voicing_notes": [50, 57, 62, 65, 69] },
+      { "bar": 2, "degree": "IV", "chord_symbol": "G7", "bass_note": "G", "voicing_notes": [43, 55, 59, 62, 65] },
+      { "bar": 3, "degree": "i", "chord_symbol": "Dm7", "bass_note": "D", "voicing_notes": [50, 57, 62, 65, 69] },
+      { "bar": 4, "degree": "bVII", "chord_symbol": "Cmaj7", "bass_note": "C", "voicing_notes": [48, 55, 60, 64, 67] }
+    ]
+  },
+  "tracks": [
+    {
+      "track_id": "trk_drums",
+      "name": "Drums",
+      "role": "drums",
+      "midi_channel": 9,
+      "notes": [
+        { "start_beat": 0.0, "duration_beats": 0.5, "pitch": 36, "velocity": 115 },
+        { "start_beat": 1.0, "duration_beats": 0.5, "pitch": 38, "velocity": 100 },
+        { "start_beat": 2.0, "duration_beats": 0.5, "pitch": 36, "velocity": 110 },
+        { "start_beat": 3.0, "duration_beats": 0.5, "pitch": 38, "velocity": 105 }
+      ]
+    },
+    {
+      "track_id": "trk_bass",
+      "name": "Sub_Bass",
+      "role": "bass",
+      "midi_channel": 2,
+      "notes": [
+        { "start_beat": 0.0, "duration_beats": 1.75, "pitch": 38, "velocity": 95 },
+        { "start_beat": 2.0, "duration_beats": 1.75, "pitch": 43, "velocity": 90 }
+      ]
+    },
+    {
+      "track_id": "trk_melody",
+      "name": "Lead_Synth",
+      "role": "lead_melody",
+      "midi_channel": 0,
+      "notes": [
+        { "start_beat": 0.5, "duration_beats": 0.75, "pitch": 62, "velocity": 85 },
+        { "start_beat": 1.5, "duration_beats": 0.5, "pitch": 65, "velocity": 90 },
+        { "start_beat": 2.5, "duration_beats": 1.25, "pitch": 69, "velocity": 95 }
+      ]
+    }
+  ],
+  "crossmodal_mappings": {
+    "audio_to_visual": {
+      "stems_to_cube_ribbons": {
+        "drums_target": "amplitude",
+        "bass_target": "stroke_width",
+        "lead_target": "spatial_harmonic",
+        "fx_target": "band_span",
+        "safe_margin_constant": 0.42
+      },
+      "spectral_bands": {
+        "sub": [20.0, 90.0],
+        "bass": [90.0, 250.0],
+        "mid": [250.0, 2500.0],
+        "high": [2500.0, 16000.0]
+      }
+    },
+    "visual_to_audio": {
+      "coordinate_space": {
+        "x_range": [0.0, 1.0],
+        "y_range": [0.0, 1.0]
+      },
+      "y_to_pitch_mapping": {
+        "min_midi_note": 36,
+        "max_midi_note": 84,
+        "quantize_to_scale": true
+      },
+      "x_to_time_mapping": {
+        "total_duration_beats": 16.0,
+        "quantize_subdivision": 0.25
+      },
+      "density_to_velocity": {
+        "min_velocity": 40,
+        "max_velocity": 120
+      }
+    }
+  }
+}

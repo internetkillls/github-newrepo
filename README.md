@@ -1,6 +1,6 @@
 # Human–AI Workbench
 
-A modular toolkit for human–AI work: problem framing, evidence-grounded reasoning, learning design, output review, collaborative analysis, and visual production.
+A modular toolkit for human–AI work: problem framing, evidence-grounded reasoning, learning design, output review, collaborative analysis, and visual and audio production.
 
 Many problems need interpretation, concept clarification, or ideation before a person and a model can work on them together. This repository brings together skill packages and local scripts that support those tasks. The tools structure and inspect work; they do not guarantee that a model's answer is correct or unbiased.
 
@@ -12,6 +12,7 @@ Many problems need interpretation, concept clarification, or ideation before a p
 - **Review:** reconstruct conversation state, audit outputs, and maintain regression examples for recurring failures.
 - **Coordinate:** divide complex work into bounded roles and merge results using explicit criteria.
 - **Build visual work:** plan, validate, and package creative visual projects for supported workflows.
+- **Build audio work:** compose and validate structured music projects, export MIDI, and prepare audio-to-visual handoffs.
 
 These are research directions and design aims, not claims that the packages eliminate model bias or guarantee correct answers.
 
@@ -24,8 +25,9 @@ These are research directions and design aims, not claims that the packages elim
 | `Skill/AntiSlop-0.3.1/` | AntiSlop (0.3.1): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
 | `Skill/Consortium-0.2.0/` | Reasoning Consortium Controller (0.2.0): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
 | `Skill/VisualPipeline-1.0.1/` | Visual Pipeline (1.0.1): visual ideation, TouchDesigner guidance, and handoffs to Blender and p5.js. `studio.py` validates project specifications and can generate build plans, calculate show cues, and maintain a local SQLite catalog. It is an offline helper, not a renderer or show player. |
+| `Skill/AudioMusicPipeline-2.1.0/` | AudioMusicPipeline (2.1.0): music and audio production skills, a portable project contract, validated offline MIDI export, and a local MCP server. The included Ableton, Max, JUCE, and visual handoff tools require their documented host environments for live use; the MCP capability report does not claim a live DAW connection. |
 
-Together, the packages cover framing, reasoning, learning, output review, coordination, and visual project workflows. The Visual Pipeline applies those ideas in a specific creative-production domain; it does not by itself validate general claims about human–AI reasoning.
+Together, the packages cover framing, reasoning, learning, output review, coordination, and visual and audio project workflows. The Visual Pipeline and AudioMusicPipeline apply those ideas in creative-production domains; neither by itself validates general claims about human–AI reasoning.
 
 ## Repository state
 

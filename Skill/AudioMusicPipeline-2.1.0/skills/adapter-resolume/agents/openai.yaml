@@ -1,0 +1,4 @@
+interface:
+  category: "Visual Production"
+  defaultPrompt: "Konfigurasi slice Resolume Arena dan sinkronisasi OSC untuk pertunjukan langsung."
+  displayName: "Resolume Arena Adapter Specialist"

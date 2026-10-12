@@ -1,0 +1,59 @@
+{
+  "score_id": "score_bali_cyber_dawn_001",
+  "title": "Cyber Dawn Over Mount Batur",
+  "dimensions": {
+    "width": 1920.0,
+    "height": 1080.0
+  },
+  "coordinate_bounds": {
+    "x_min": 0.0,
+    "x_max": 1.0,
+    "y_min": 0.0,
+    "y_max": 1.0
+  },
+  "elements": [
+    {
+      "element_id": "bass_pulse_1",
+      "type": "point_event",
+      "voice_role": "bass",
+      "color_rgba": [0.1, 0.4, 0.9, 1.0],
+      "stroke_width": 0.035,
+      "points": [[0.0, 0.15], [0.25, 0.15], [0.5, 0.15], [0.75, 0.15]],
+      "metadata": { "description": "Driving fundamental sub pulse on quarter notes" }
+    },
+    {
+      "element_id": "melody_trajectory_arc",
+      "type": "trajectory_curve",
+      "voice_role": "melody",
+      "color_rgba": [0.95, 0.8, 0.2, 1.0],
+      "stroke_width": 0.015,
+      "points": [
+        [0.0, 0.60],
+        [0.125, 0.68],
+        [0.25, 0.75],
+        [0.375, 0.70],
+        [0.5, 0.82],
+        [0.625, 0.78],
+        [0.75, 0.65],
+        [0.875, 0.58],
+        [1.0, 0.60]
+      ],
+      "metadata": { "description": "Ascending arching contour reflecting volcanic ridge horizon" }
+    },
+    {
+      "element_id": "harmony_ribbon_pad",
+      "type": "harmonic_ribbon",
+      "voice_role": "harmony",
+      "color_rgba": [0.7, 0.2, 0.85, 0.8],
+      "stroke_width": 0.025,
+      "points": [
+        [0.0, 0.40],
+        [0.25, 0.45],
+        [0.5, 0.42],
+        [0.75, 0.48],
+        [1.0, 0.40]
+      ],
+      "metadata": { "description": "Atmospheric modal pad undulating behind the melody" }
+    }
+  ]
+}

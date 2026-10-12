@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Rancang rig pertunjukan panggung live dengan latensi rendah, failover redundan, dan sinkronisasi clock."
+  displayName: "Live Performance Rig Specialist"

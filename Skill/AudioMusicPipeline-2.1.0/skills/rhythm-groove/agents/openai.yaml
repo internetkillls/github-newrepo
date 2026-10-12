@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Buat pola ritme Euclidean dan groove swing untuk drum dan bass."
+  displayName: "Rhythm & Groove Specialist"

@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Rancang arsitektur sintesis suara (subtractive/FM/granular) dan rantai efek audio."
+  displayName: "Sound Design & Synthesis Specialist"
