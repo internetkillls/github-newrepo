@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Jalankan konversi dua arah antara visual score dan musik/audio dengan metrik kehilangan informasi."
+  displayName: "Cross-Modal Engine Specialist"

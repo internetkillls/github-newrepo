@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual Score Schema (Graphic Score & Parametric Trajectory)",
+  "description": "Defines graphic notation, geometric curves, density clusters, and visual score gestures mapped to sound and music.",
+  "type": "object",
+  "required": ["score_id", "title", "coordinate_bounds", "elements"],
+  "properties": {
+    "score_id": { "type": "string" },
+    "title": { "type": "string" },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "number", "default": 1920.0 },
+        "height": { "type": "number", "default": 1080.0 }
+      }
+    },
+    "coordinate_bounds": {
+      "type": "object",
+      "properties": {
+        "x_min": { "type": "number", "default": 0.0 },
+        "x_max": { "type": "number", "default": 1.0 },
+        "y_min": { "type": "number", "default": 0.0 },
+        "y_max": { "type": "number", "default": 1.0 }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["element_id", "type"],
+        "properties": {
+          "element_id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["point_event", "trajectory_curve", "density_cluster", "harmonic_ribbon"]
+          },
+          "voice_role": {
+            "type": "string",
+            "enum": ["melody", "bass", "harmony", "percussion", "texture"]
+          },
+          "color_rgba": {
+            "type": "array",
+            "items": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "stroke_width": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "points": {
+            "type": "array",
+            "description": "Array of [x, y, (optional weight)] normalized coordinates",
+            "items": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 3
+            }
+          },
+          "metadata": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

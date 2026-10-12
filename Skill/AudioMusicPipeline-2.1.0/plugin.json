@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "audio-music-pipeline",
+  "version": "2.1.0",
+  "description": "Comprehensive music composition, harmony, rhythm, MIDI, audio DSP, Ableton Live 12, Max/MSP, JUCE C++, and bidirectional visual score pipeline.",
+  "author": {
+    "name": "J. G. Agathon",
+    "email": "joshuagabrielagathon@gmail.com"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "category": "Music & Audio Production",
+        "displayName": "AudioMusicPipeline",
+        "shortDescription": "End-to-end music, DAW, JUCE & cross-modal pipeline",
+        "longDescription": "Guiding projects from songwriting, harmony, rhythm, MIDI, sound design, and audio DSP to Ableton Live 12, Max/MSP 8, Max for Live, JUCE C++ audio plugins, and bidirectional visual score / TouchDesigner bridges.",
+        "defaultPrompt": "Bantu saya merancang dan mengimplementasikan proyek musik lengkap: mulai dari ideasi harmoni dan ritme, file MIDI, set Ableton Live 12, patch Max/MSP, plugin audio JUCE C++, hingga jembatan visual score dua arah."
+      }
+    }
+  }
+}

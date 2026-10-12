@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Hubungkan proyek dengan Ableton Live 12 Suite: buat file set .als, routing OSC, atau skrip remote LOM."
+  displayName: "Ableton Live 12 Integration Specialist"

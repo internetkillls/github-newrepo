@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Ekstrak fitur spektral audio (RMS, spectral centroid, onsets) untuk kontrol visual atau analisis mix."
+  displayName: "Audio Feature Extraction Specialist"

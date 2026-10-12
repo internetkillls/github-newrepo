@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Rencanakan orkestrasi proyek musik dan audiovisual lengkap dengan kontrak lintas modal yang dapat diverifikasi."
+  displayName: "Music Project Orchestrator"

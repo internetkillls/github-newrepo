@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Kembangkan plugin audio C++ berbasis JUCE dengan DSP real-time safe dan tes unit headless."
+  displayName: "JUCE Plugin Developer"

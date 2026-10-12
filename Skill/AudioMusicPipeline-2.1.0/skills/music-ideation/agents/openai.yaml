@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Bantu ideasi tema musik dan visual score dengan parameter variasi terikat."
+  displayName: "Music Ideation Specialist"

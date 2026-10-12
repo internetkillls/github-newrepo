@@ -1,2 +1,4 @@
 # Local source archives are retained here as recovery copies; the extracted folders are versioned.
 Skill/*.zip
+__pycache__/
+*.pyc

@@ -1,0 +1,4 @@
+interface:
+  category: "Visual Production"
+  defaultPrompt: "Deploy komponen audio-reactive TouchDesigner dan router parameter kubus 4-sisi."
+  displayName: "TouchDesigner Visual Adapter"

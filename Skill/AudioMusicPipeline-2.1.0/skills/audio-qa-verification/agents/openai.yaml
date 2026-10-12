@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Lakukan audit QA audio lengkap: periksa True Peak, LUFS, clipping, DC offset, dan korelasi fase stereo."
+  displayName: "Audio QA Verifier"

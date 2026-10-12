@@ -1,0 +1,4 @@
+interface:
+  category: "Music & Audio Production"
+  defaultPrompt: "Buat patch Max/MSP 8.6 atau device Max for Live (.amxd) dengan routing sinyal audio dan kontrol terverifikasi."
+  displayName: "Max/MSP & M4L Specialist"

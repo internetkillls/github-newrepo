@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "audio-music-pipeline": {
+      "type": "stdio",
+      "command": "python3",
+      "args": ["${PLUGIN_ROOT}/tools/mcp_audio_server.py"],
+      "cwd": "${PLUGIN_ROOT}"
+    }
+  }
+}
