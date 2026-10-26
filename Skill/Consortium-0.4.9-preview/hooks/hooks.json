@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${PLUGIN_ROOT}/scripts/rcc-stop-hook.mjs\"",
+            "timeout": 3,
+            "statusMessage": "Checking opted-in RCC deferred handoff"
+          }
+        ]
+      }
+    ]
+  }
+}

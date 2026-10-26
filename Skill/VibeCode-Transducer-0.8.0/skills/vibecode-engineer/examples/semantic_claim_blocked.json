@@ -1,0 +1,14 @@
+{
+  "goal": "Decide whether marker counts prove rhetorical synthesis",
+  "claim_type": "semantic",
+  "observation_kind": "lexical_spans",
+  "source_id": "SECOND_ORDER_MODELS_v1.3.md",
+  "features": {
+    "sentence_bounded_tokens": true,
+    "traceable_offsets": true,
+    "defined_denominator": true,
+    "overlapping_windows": true,
+    "annotated_propositions": false,
+    "annotation_validation": false
+  }
+}

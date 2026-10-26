@@ -1,0 +1,23 @@
+{
+  "interface": {
+    "displayName": "Reasoning Consortium Controller",
+    "shortDescription": "Route reasoning consortiums",
+    "longDescription": "Splits complex problems into bounded worker contexts, preserves epistemic independence, manages closure and merge contracts, and when installed locally in Codex can drive a dedicated logged-in Chrome profile to create persistent ChatGPT worker tabs through a bundled CDP transport. Designed to work alongside Reasoning Method Controller.",
+    "developerName": "J. G. Agathon",
+    "category": "Productivity",
+    "defaultPrompt": [
+      "Split this problem into an independent reasoning consortium and define worker, closure, and merge contracts.",
+      "Use the consortium controller with Reasoning Method Controller: preserve worker independence, route only the necessary context, and merge by explicit criteria.",
+      "Design a multi-tab reasoning run for this task, including tab ownership, locks, closure packets, and invalidation rules."
+    ],
+    "capabilities": []
+  },
+  "name": "reasoning-consortium-controller",
+  "version": "0.4.9-preview",
+  "description": "Coordinates segmented multi-worker reasoning with closures, handoffs, merge policy, and an optional local Codex/CDP browser runtime that opens persistent ChatGPT worker tabs without MCP. Adds optional local-first context/Git CLI with explicit human-gated patch operation.",
+  "author": {
+    "name": "J. G. Agathon"
+  },
+  "keywords": [],
+  "skills": "./skills"
+}

@@ -1,0 +1,7 @@
+{
+  "goal":"Count phrase occurrences without claiming observed scalar rate identifies rhetoric",
+  "claim_type":"semantic",
+  "representation":{"unit":{"name":"exact phrase","kind":"event","measurement_scale":"count","dimension_kind":"dimensionless","identity_rule":"same normalized exact phrase","boundary_rule":"sentence-scoped tokens","source_ref":"two bounded passage extracts"},"operations":["frequency"],"required_relations":["sentence_order"],"preserved_relations":["sentence_order"]},
+  "normalization":{"method":"exposure_rate","observations":[{"count":2,"exposure":10},{"count":4,"exposure":20}]},
+  "deduction":{"rule":"noninjective_label_counterexample","observations":[{"feature":0.2,"label":"quoted"},{"feature":0.2,"label":"asserted"}]}
+}

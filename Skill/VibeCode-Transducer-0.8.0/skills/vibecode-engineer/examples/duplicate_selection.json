@@ -1,0 +1,11 @@
+{
+  "task_kind":"debug",
+  "goal":"Investigate a duplicate action that appears to keep the wrong selection; propose a minimal test and donor candidate.",
+  "expected_behavior":"Duplicating a selected layer creates a new layer and selects that new layer.",
+  "observed_behavior":"A reported UI instance selects the original layer after duplication; not reproduced in this snapshot.",
+  "target_file":"src/duplicate.py",
+  "files":{
+    "src/duplicate.py":"def duplicate(selected):\n    copy = dict(selected)\n    return selected\n",
+    "src/clone.py":"def clone(selected):\n    copy = dict(selected)\n    return copy\n"
+  }
+}

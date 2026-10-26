@@ -1,0 +1,12 @@
+flowchart LR
+ Human --> CLI[RCC local CLI]
+ CLI --> G[Git read-only identity/status]
+ CLI --> Decision[Context plan]
+ Decision --> Native[Native agent tools]
+ Decision --> AIF[Optional AIF executable]
+ AIF --> Evidence[Verifiable source package]
+ CLI --> Patch[Patch-plan / Git check]
+ Patch --> Approval{Human approval + unchanged preimage}
+ Approval -->|deny| Stop[Stop without mutation]
+ Approval -->|approve| Apply[git apply to working tree]
+ Apply --> Receipt[Before/after receipt; tests not run]

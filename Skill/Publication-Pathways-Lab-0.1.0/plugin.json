@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "joshuagabrielagathon@gmail.com",
+    "name": "J. G. Agathon"
+  },
+  "description": "Benchmark publication readiness, scaffold independent discovery and responsible publishing across journals, creator platforms and GitHub, and connect evidence to exposure, income and career without sacrificing wellbeing.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive"
+        ],
+        "category": "Productivity",
+        "defaultPrompt": [
+          "Benchmark this idea or draft for journal, social or GitHub publication and show me the easiest responsible route.",
+          "Teach me to independently discover suitable publication venues with reproducible search queries.",
+          "Connect my latest briefing and session notes to credible publication, exposure, monetization and career opportunities without pressure."
+        ],
+        "developerName": "J. G. Agathon",
+        "displayName": "Publication Pathways Lab",
+        "longDescription": "Publication-readiness assessment, verified journal and creator-channel research, independent search-query workshops, ethical GitHub contribution verification, and wellbeing-aware pathways from scholarship to exposure, revenue and careers.",
+        "shortDescription": "From inquiry to public work"
+      }
+    }
+  },
+  "name": "publication-pathways-lab",
+  "version": "0.1.0"
+}

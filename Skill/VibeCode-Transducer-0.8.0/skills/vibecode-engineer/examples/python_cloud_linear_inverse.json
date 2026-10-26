@@ -1,0 +1,13 @@
+{
+  "math_problem": {
+    "goal": "Decide whether the inverse linear problem has a unique solution",
+    "claim_type": "inverse",
+    "observation_kind": "matrix",
+    "features": {"forward_model": true, "inverse_domain": true}
+  },
+  "observation_payload": {
+    "kind": "matrix",
+    "rows": [[1, 1], [2, 2]],
+    "target": [3, 6]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "rcc.postproject-release-preservation.v1",
+  "at": "2026-10-19T03:12:26.180051+00:00",
+  "baseRelease": "pluginrel_6ad27ede409881918c9573669f6ab44d",
+  "version": "0.4.7-preview",
+  "scope": "Documentation/policy/materials only; no runtime/browser behavior changed or newly certified",
+  "checks": [
+    {
+      "name": "plugin.json preserves all configuration except version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": ".codex-plugin/plugin.json preserves all configuration except version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "package.json preserves all configuration except version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "root manifest schema",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills/rcc-postproject-interview/SKILL.md frontmatter and size",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills/reasoning-consortium/SKILL.md frontmatter and size",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "project documentary checks pass",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "all ten original-room responses retained",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "case ZIP CRC and safe portable paths",
+      "status": "PASS",
+      "detail": 362
+    },
+    {
+      "name": "README.md links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-postproject-interview\\SKILL.md links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "docs\\cases\\paperfold-20261019\\README.md links",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "status": "PASS",
+  "caseArchive": {
+    "schema": "rcc.paperfold-case-archive.v1",
+    "path": "PAPERFOLD-POSTPROJECT-MATERIALS.zip",
+    "bytes": 6936484,
+    "sha256": "7e935c6a1e9c0a099fdda5ff955953e09b7fe380c7c3b68644ea83abfdc9aaf9",
+    "scope": "Repository documentary layout, original available worker archives, public-response interviews, scoped evidence/contracts/tests. No browser profiles or credentials.",
+    "sourceCommit": "317d37ac76437f4db9a6d114a5438aa30a494049",
+    "files": 362
+  }
+}

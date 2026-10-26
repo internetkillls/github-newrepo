@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AntiSlop anchored conversation event v0.3",
+  "type": "object",
+  "required": [
+    "event_id",
+    "turn_id",
+    "actor",
+    "origin",
+    "kind",
+    "status",
+    "text",
+    "evidence_refs"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "turn_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor": {
+      "enum": [
+        "user",
+        "assistant",
+        "tool",
+        "source",
+        "unknown"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "user-authored",
+        "user-quoted",
+        "third-party",
+        "prior-assistant",
+        "generated-paste",
+        "source-extract",
+        "unknown"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "question",
+        "claim",
+        "proposal",
+        "decision",
+        "adoption",
+        "correction",
+        "constraint",
+        "term-sense",
+        "test",
+        "evidence",
+        "debt",
+        "retraction"
+      ]
+    },
+    "status": {
+      "enum": [
+        "stated",
+        "proposed",
+        "accepted",
+        "rejected",
+        "superseded",
+        "unresolved"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "source_id",
+          "locator"
+        ],
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "adopted_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "superseded_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "thread_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scope": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_event_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Adoption targets this exact candidate, not every earlier assistant proposal."
+    },
+    "target_event_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "corrects": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "User correction/retraction points to earlier event."
+    },
+    "replaces": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "New active question explicitly replaces prior question, and must be authorized."
+    }
+  },
+  "additionalProperties": true
+}

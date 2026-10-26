@@ -1,0 +1,14 @@
+erDiagram
+  GIT_WORKTREE ||--o{ SOURCE_STATE : identifies
+  CONTEXT_REQUEST }o--|| GIT_WORKTREE : targets
+  CONTEXT_REQUEST ||--o{ EVIDENCE_BUNDLE : requests
+  GIT_WORKTREE ||--o{ PATCH_PLAN : preconditions
+  PATCH_PLAN ||--o{ PATCH_PATH : touches
+  PATCH_PLAN ||--o| APPLY_RECEIPT : approved_as
+  GIT_WORKTREE { string root string gitDir string head }
+  CONTEXT_REQUEST { string task string mode boolean portable }
+  SOURCE_STATE { string relativePath string sha256 string status }
+  EVIDENCE_BUNDLE { string provider string manifestPath string omissions }
+  PATCH_PLAN { string approvalId string patchSha256 string preimageHashes }
+  PATCH_PATH { string path string expectedSha256 }
+  APPLY_RECEIPT { string status string afterHashes boolean testsRun }

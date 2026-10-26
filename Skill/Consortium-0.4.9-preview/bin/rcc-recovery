@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+import {readFileSync,existsSync,realpathSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {inspectRecovery} from '../lib/recovery-inspect.mjs';
+import {saveJson} from '../lib/operations.mjs';
+import {failurePacket,persistIncident,resumeObservation,inspectIncident} from '../lib/recovery-incidents.mjs';
+const arg=k=>process.argv.find(x=>x.startsWith('--'+k+'='))?.slice(k.length+3);
+try{
+ const command=process.argv[2];
+ const needsState=['inspect','incident','resume-observation'].includes(command);
+ if(!['inspect','incident','resume-observation','configure-route','delivery-status','deliver','recover'].includes(command)||(needsState&&!arg('state')))throw Error('Usage: rcc-recovery inspect|incident|resume-observation --state=<checkpoint.json>, or configure-route|delivery-status|deliver|recover [--state=<browser-checkpoint.json>] [--case=<id>] [--root=<workspace>] [--port=9222] [--output=<report.json>]. Delivery requires a separately configured explicit route and incident. Queue checkpoints always come from the journal. No browser restarts or uncertain sends.');
+ const path=arg('state')?resolve(arg('state')):null;
+ const output=arg('output');const key=p=>process.platform==='win32'?p.toLowerCase():p;
+ const inputs=[path,...['decision-file','executable','entrypoint'].map(k=>arg(k)?resolve(arg(k)):null)].filter(Boolean);
+ if(output&&inputs.some(input=>key(resolve(output))===key(input)||(existsSync(resolve(output))&&existsSync(input)&&key(realpathSync(resolve(output)))===key(realpathSync(input)))))throw Error('recovery.cannot_overwrite_input');
+ const loadState=()=>{const b=readFileSync(path);if(b.length>2*1024*1024)throw Error('recovery.state_too_large');return JSON.parse(b.toString('utf8').replace(/^\uFEFF/,''))};
+ const state=needsState?loadState():null;const port=Number(arg('port')||9222),root=resolve(arg('root')||process.cwd());let result;
+ if(['configure-route','delivery-status','deliver','recover'].includes(command)){
+  const {configureEmergencyRoute,emergencyDeliveryStatus,deliverEmergency,recoverEmergency}=await import('../lib/emergency-delivery.mjs');
+  if(command==='configure-route')result=await configureEmergencyRoute(root,{caseId:arg('case')||(path?loadState().caseId:null),sessionId:arg('session'),executable:arg('executable'),entrypoint:arg('entrypoint')||null,authorizationRef:arg('authorization-ref'),expiresAt:arg('expires-at'),autoReobserve:process.argv.includes('--auto-reobserve'),allowNonGit:process.argv.includes('--allow-non-git')});
+  else if(command==='delivery-status')result=emergencyDeliveryStatus(root,arg('incident'));
+  else{if(path&&inspectIncident(root,arg('incident')).jobId)throw Error('recovery.queue_checkpoint_comes_from_journal');result=await(command==='deliver'?deliverEmergency:recoverEmergency)(root,arg('incident'),{...(path?{loadState}:{}),port});}
+ }else if(command==='resume-observation'){
+  if(!arg('incident')||!arg('decision-file'))throw Error('recovery.incident_and_decision_required');
+  const d=readFileSync(resolve(arg('decision-file')));if(d.length>65536)throw Error('recovery.decision_too_large');
+  result=await resumeObservation(root,{incidentId:arg('incident'),decision:JSON.parse(d.toString('utf8').replace(/^\uFEFF/,'')),loadState,port});
+ }else{
+  const report=await inspectRecovery(state,{port});
+  if(command==='inspect')result=report;
+  else{const packet=failurePacket({caseId:arg('case')||state.caseId,goalRef:arg('goal-ref'),inspection:report});result=packet?{status:'PERSISTED_LOCAL_NOT_DELIVERED',...persistIncident(root,packet),sendAllowed:false}:{status:'NO_RECOVERY_INCIDENT',inspection:report,sendAllowed:false};}
+ }
+ if(output)saveJson(resolve(output),result);
+ console.log(JSON.stringify(result,null,2));if(!result.ok&&!['OBSERVED','NO_RECOVERY_INCIDENT','OBSERVATION_RETURNED_NOT_TASK_COMPLETION','ROUTE_CONFIGURED_NO_MESSAGE_SENT','AGENT_ACKNOWLEDGED_DECISION_READY','AGENT_ACKNOWLEDGED_UNRESOLVED'].includes(result.status))process.exitCode=2;
+}catch(e){console.error(String(e.message));process.exitCode=1;}

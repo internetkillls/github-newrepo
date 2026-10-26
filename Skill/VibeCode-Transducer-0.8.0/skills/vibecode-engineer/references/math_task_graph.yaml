@@ -1,0 +1,169 @@
+schema: vct-heuristic-task-derivation/0.1-proposal
+status: SPECIFICATION_ONLY_NOT_EXECUTED
+source_contract:
+  document: SECOND_ORDER_MODELS_v1.3.md
+  schema_root_must_remain: corpus-to-codomain/unified-1.1
+  sections:
+    "03": observed_lexical_evidence
+    "04": evidence_bound_editing_candidates
+    "05": user_owned_human_steering
+  claims_not_licensed_by_surface_markers:
+    - causal_rhetoric
+    - author_identity
+    - formal_logical_proof
+    - full_proposition_semantics
+metadata:
+  math_registry_existing_range: MATH-001..MATH-099
+  math_100: PROPOSED_BUCKINGHAM_PI_NOT_EXISTING
+  atlas_namespace: ATLAS-031..ATLAS-080
+  transducer_execution: NOT_PERFORMED
+model_selection:
+  hard_gates:
+    - operator_input_type_matches_observation
+    - operator_preconditions_declared_and_met
+    - empirical_to_formal_representation_warranted
+    - operator_supports_requested_claim_type
+    - explicit_negative_oracle_available
+  if_no_method_eligible: NEED_DATA_OR_REFRAME
+  selection_among_eligible: declare_quality_criteria_and_compare_Pareto_non_numeric_by_default
+claims:
+  - code: C_OBS
+    type: descriptive
+    evidence: exact_span_and_window_trace
+  - code: C_SEM
+    type: interpretive
+    evidence: independent_proposition_annotation_required
+  - code: C_CAUSAL
+    type: causal
+    evidence: causal_design_and_identification_required
+  - code: C_EDITORIAL
+    type: user_policy
+    evidence: explicit_human_selection_required
+states:
+  - SPECIFIED
+  - STATIC_CHECKED
+  - MEASURED
+  - ANNOTATED
+  - TESTED
+  - UNVERIFIED
+  - NEED_DATA
+  - PROPOSED
+operators:
+  - id: MATH-007
+    role: counterexample_to_claim
+  - id: MATH-043
+    role: discrete_gap_beta
+  - id: MATH-061
+    role: task_order_if_DAG
+  - id: MATH-088
+    role: identifiability_guard
+  - id: MATH-090
+    role: causal_guard
+  - id: MATH-091
+    role: abductive_rival_models
+  - id: MATH-098
+    role: metamodel_separation
+  - id: ATLAS-034
+    role: lexical_jaccard_donor_inspection_only
+    runtime_claim: narrow_operation_exists_in_installed_skill_not_run_here
+tasks:
+  - id: T00
+    name: scope_and_provenance
+    depends_on: []
+    produces: [source_inventory, no_change_surfaces]
+    oracle: no_invented_repo_or_runtime_witness
+  - id: T01
+    name: problem_and_claim_typing
+    depends_on: [T00]
+    produces: [claim_kinds, measurable_objects]
+    oracle: diction_problem_not_upgraded_to_full_rhetorical_analysis
+  - id: T02
+    name: observation_relations_and_spans
+    depends_on: [T01]
+    produces: [typed_lexical_observations]
+    oracle: anchor_cannot_cross_sentence_boundaries
+  - id: T03
+    name: measurement_invariance_and_loss
+    depends_on: [T02]
+    produces: [measurement_contract]
+    oracle: generation_exclusions_do_not_mutate_observations
+  - id: T04
+    name: instance_signature_and_rival_models
+    depends_on: [T03]
+    produces: [problem_features, candidate_model_grammars, falsifiers]
+    oracle: false_model_grammar_fails_easy_case
+  - id: T05
+    name: operator_eligibility_and_selection
+    depends_on: [T04]
+    produces: [licensed_operator_set, rejection_explanations]
+    oracle: unsupported_method_is_not_selected
+  - id: T06
+    name: alpha_beta_lexical_extraction
+    depends_on: [T05]
+    when: lexical_claim_or_lexical_features_in_selected_semantic_hypothesis
+    produces: [alpha_record, beta_record]
+    oracle: censored_endpoint_is_null_not_zero
+  - id: T07
+    name: candidate_surface_marker_gates
+    depends_on: [T05]
+    when: requested_claim_type_includes_surface_candidates
+    produces: [delta_epsilon_phi_gamma_candidates]
+    oracle: phi_status_not_formal_proof_and_gamma_not_morphology
+  - id: T08
+    name: observational_contract_qa
+    depends_on_any: [T06, T07]
+    produces: [witnesses, limitations]
+    oracle: anchor_cap_and_overlapping_windows_explicit
+  - id: T09
+    name: statistical_uncertainty_branch
+    depends_on: [T08]
+    when: requested_claim_requires_stochastic_inference_and_valid_sampling_model_exists
+    produces: [statistical_assumptions, estimate, uncertainty]
+    oracle: no_naive_iid_test_on_overlapping_anchor_windows
+  - id: T10
+    name: semantic_proposition_annotation
+    depends_on: [T08]
+    when: requested_claim_type_is_semantic
+    produces: [annotation_codebook, annotated_propositions]
+    oracle: quoted_marker_negative_case_is_labeled_correctly
+  - id: T11
+    name: toulmin_warrant_graph
+    depends_on: [T10]
+    when: proposition_annotation_exists_and_argument_claim_requested
+    produces: [typed_claim_data_warrant_backing_qualifier_rebuttal]
+    oracle: marker_is_not_automatically_support_relation
+  - id: T12
+    name: inverse_and_causal_eligibility
+    depends_on: [T04]
+    optional_additional_predecessors: [T11]
+    when: inverse_or_causal_claim_explicitly_requested
+    produces: [identifiability_result, unresolved_alternatives]
+    oracle: confounded_or_nonunique_cases_do_not_get_PROVED
+  - id: T13
+    name: engineering_intermediate_representation
+    depends_on: [T08]
+    optional_additional_predecessors: [T09, T11, T12]
+    produces: [typed_task_ir, dependency_edges]
+    oracle: outputs_match_successor_inputs_by_type
+  - id: T14
+    name: acceptance_and_negative_controls
+    depends_on: [T13]
+    produces: [test_specification_and_receipt_requirements]
+    oracle: static_spec_not_misreported_as_runtime_pass
+  - id: T15
+    name: mde_krr_projection
+    depends_on: [T14]
+    produces: [versioned_metamodel_and_provenance_mapping]
+    oracle: root_snapshot_schema_preserved
+  - id: T16
+    name: guarded_vct_build_handoff
+    depends_on: [T15]
+    when: owner_authorizes_code_changes_and_real_checkout_exists
+    produces: [scoped_patch_request, independent_test_plan]
+    oracle: no_patch_claim_without_actual_diff_and_tests
+  - id: T17
+    name: revision_after_falsifier
+    triggered_by: [T08.failure, T14.failure]
+    produces: [new_model_revision, preserved_old_witnesses]
+    oracle: old_success_receipt_not_carried_over_to_revised_spec
+    next_version_start: T01

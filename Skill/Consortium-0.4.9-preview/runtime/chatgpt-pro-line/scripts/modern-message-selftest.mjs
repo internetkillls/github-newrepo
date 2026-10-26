@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import { snapshotConversationMessages } from '../src/chatgpt-messages.mjs';
+const node=(role,text)=>({innerText:text,childElementCount:1,getAttribute:k=>k==='data-markdown-text-style'&&role==='assistant'?'assistant-message':null,hasAttribute:k=>k==='data-user-message-bubble'&&role==='user'});
+const user=node('user','Exactly the authorized prompt');
+const answer=node('assistant','Answer');
+const unrelated=node('unknown','sidebar');
+let messages=[user,answer];
+const cdp={send:async(_,p)=>({result:{value:vm.runInNewContext(p.expression,{document:{querySelectorAll:s=>s==='[data-message-author-role]'?[]:s.includes('data-user-message-bubble')?messages:[unrelated]}})}})};
+const result=await snapshotConversationMessages(cdp);
+assert.equal(JSON.stringify(result.map(x=>x.role)),JSON.stringify(['user','assistant']));
+assert.equal(result[0].text,user.innerText);
+messages=[];
+assert.equal((await snapshotConversationMessages(cdp)).length,0);
+console.log(JSON.stringify({ok:true,tested:['modern-user-assistant','empty-thread-not-sent','sidebar-not-message']}));

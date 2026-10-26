@@ -1,0 +1,522 @@
+{
+  "scope": "user_supplied_atlas_batches_004_through_008",
+  "count": 50,
+  "units": [
+    {
+      "id": "031",
+      "name": "Perceptual Hashing (pHash)",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://github.com/JohannesBuchner/imagehash"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "032",
+      "name": "Spectral Flux",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://librosa.org/doc/latest/generated/librosa.onset.onset_strength.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "033",
+      "name": "Dynamic Time Warping (DTW)",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://tslearn.readthedocs.io/en/stable/user_guide/dtw.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "034",
+      "name": "Jaccard Similarity Coefficient",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.jaccard.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "035",
+      "name": "k-Core Decomposition",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.core.k_core.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "036",
+      "name": "Cumulative Sum (CUSUM)",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://www.itl.nist.gov/div898/handbook/pmc/section3/pmc323.htm"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "037",
+      "name": "Point-in-Polygon Predicate",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://shapely.readthedocs.io/en/stable/predicates.html",
+        "https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "038",
+      "name": "Connected-Component Labeling (CCL)",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/api/skimage.measure.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "039",
+      "name": "File Signature / Magic-Byte Matching",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://manpages.debian.org/testing/libmagic1/magic.5.en.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "040",
+      "name": "Allen's Interval Algebra",
+      "origin_file": "lateral_discovery_atlas_batch_004_fixed.html",
+      "origin_sha256": "e8fa1c6227c050d55203e9bdb31eaec55f2eb0a15c90e80d8f0d7763bac5e00d",
+      "source_urls": [
+        "https://ics.uci.edu/~alspaugh/cls/shr/allen.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "041",
+      "name": "Matrix Profile (Nearest-Neighbor Subsequence Profile)",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://stumpy.readthedocs.io/en/latest/Tutorial_STUMPY_Basics.html",
+        "https://stumpy.readthedocs.io/en/stable/Tutorial_Multidimensional_Motif_Discovery.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "042",
+      "name": "Chromagram / Pitch-Class Profile",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://librosa.org/doc/latest/auto_tutorials/03-advanced/plot_chroma.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.feature.chroma_stft.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "043",
+      "name": "Straight-Line Hough Transform",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/auto_examples/edges/plot_line_hough_transform.html",
+        "https://scikit-image.org/docs/stable/api/skimage.transform.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "044",
+      "name": "Geohash Prefix Encoding",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://postgis.net/docs/manual-dev/en/ST_GeoHash.html",
+        "https://redis.io/docs/latest/commands/geohash/"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "045",
+      "name": "MinHash Signature",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://ekzhu.com/datasketch/minhash.html",
+        "https://ekzhu.com/datasketch/documentation.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "046",
+      "name": "Pareto Dominance / Non-Dominated Filtering",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://www.pymoo.org/algorithms/moo/nsga2.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "047",
+      "name": "Content-Defined Chunking (FastCDC)",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://www.usenix.org/conference/atc16/technical-sessions/presentation/xia",
+        "https://github.com/google/cdc-file-transfer/blob/main/fastcdc/fastcdc.h"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "048",
+      "name": "Needleman–Wunsch Global Sequence Alignment",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://biopython.org/docs/latest/Tutorial/chapter_pairwise.html",
+        "https://github.com/biopython/biopython/blob/master/Doc/Tutorial/chapter_pairwise2.rst"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "049",
+      "name": "Median-Cut Color Quantization",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://pillow.readthedocs.io/en/stable/reference/Image.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "050",
+      "name": "AC-3 Arc Consistency (Constraint Propagation)",
+      "origin_file": "lateral_discovery_atlas_batch_005(1).html",
+      "origin_sha256": "9cd6800d727837c39a799526b980a97de51b793da591059ea128033bc1fe5973",
+      "source_urls": [
+        "https://users.cs.northwestern.edu/~ddowney/courses/348/lectures/csp.pdf"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "051",
+      "name": "Euclidean Distance Transform (EDT)",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.distance_transform_edt.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "052",
+      "name": "Autocorrelation Function (ACF)",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.acf.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "053",
+      "name": "Bloom Filter Membership Query",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://redis.io/docs/latest/data-types/probabilistic/bloom-filter/"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "054",
+      "name": "CIEDE2000 Colour Difference (ΔE₀₀)",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://colour.readthedocs.io/en/latest/generated/colour.delta_E.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "055",
+      "name": "Median Absolute Deviation (MAD)",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/mad.htm",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.median_abs_deviation.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "056",
+      "name": "Ramer–Douglas–Peucker Polyline Simplification",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://shapely.readthedocs.io/en/stable/manual.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "057",
+      "name": "Zero-Crossing Rate (ZCR)",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://librosa.org/doc/main/api/generated/librosa.feature.zero_crossing_rate.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "058",
+      "name": "Topological Sorting of Dependencies",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.dag.topological_sort.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "059",
+      "name": "Luhn Mod-10 Check Digit",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://loinc.org/kb/users-guide/calculating-mod-10-check-digits",
+        "https://www.ibm.com/docs/en/rbd/9.6.0?topic=syslib-calculatechkdigitmod10"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "060",
+      "name": "Articulation Point / Cut-Vertex Detection",
+      "origin_file": "lateral_discovery_atlas_batch_006(1).html",
+      "origin_sha256": "8b74cbf84efd42fdd159612ad1b6c6cc1e30a666b14ebd319a3e6cc074ecfcb8",
+      "source_urls": [
+        "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.components.articulation_points.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "061",
+      "name": "RANSAC (Random Sample Consensus)",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RANSACRegressor.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "062",
+      "name": "Discrete Wavelet Transform (DWT)",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://pywavelets.readthedocs.io/en/stable/ref/dwt-discrete-wavelet-transform.html",
+        "https://pywavelets.readthedocs.io/en/latest/regression/dwt-idwt.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "063",
+      "name": "YIN Fundamental-Frequency Estimator",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://librosa.org/doc/latest/generated/librosa.yin.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "064",
+      "name": "Morgan Circular Molecular Fingerprint",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://www.rdkit.org/docs/source/rdkit.Chem.rdFingerprintGenerator.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "065",
+      "name": "STRtree / R-tree Bounding-Box Index",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://shapely.readthedocs.io/en/stable/strtree.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "066",
+      "name": "HyperLogLog (HLL) Cardinality Sketch",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://datasketches.apache.org/docs/HLL/HllSketches.html",
+        "https://apache.github.io/datasketches-python/5.0.2/distinct_counting/hyper_log_log.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "067",
+      "name": "Radon Transform (Sinogram Construction)",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/auto_examples/transform/plot_radon_transform.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "068",
+      "name": "Wasserstein-1 Distance (Earth Mover's Distance)",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wasserstein_distance.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "069",
+      "name": "Benjamini–Hochberg False Discovery Rate Procedure",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://www.statsmodels.org/dev/generated/statsmodels.stats.multitest.multipletests.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "070",
+      "name": "Reservoir Sampling — Algorithm R",
+      "origin_file": "lateral_discovery_atlas_batch_007.html",
+      "origin_sha256": "cf562fdc6c4b446c9822f1f3a658e7b3c123e4f99b71ca439c5f82ea74a9f1c0",
+      "source_urls": [
+        "https://doi.org/10.1145/3147.3165"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "071",
+      "name": "Gray-Level Co-occurrence Matrix (GLCM)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/api/skimage.feature.html#skimage.feature.graycomatrix"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "072",
+      "name": "Phase Cross-Correlation (Fourier Shift Registration)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/auto_examples/registration/plot_register_translation.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "073",
+      "name": "Run-Length Encoding (RLE)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html",
+        "https://www.itu.int/rec/T-REC-T.4"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "074",
+      "name": "Savitzky–Golay Local Polynomial Filtering",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.savgol_filter.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "075",
+      "name": "Marching Squares Isocontour Extraction",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://scikit-image.org/docs/stable/api/skimage.measure.html#skimage.measure.find_contours"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "076",
+      "name": "Linear Sum Assignment (Hungarian Assignment Problem)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html",
+        "https://docs.scipy.org/doc/scipy/tutorial/optimize.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "077",
+      "name": "Borda Count Rank Aggregation",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://plato.stanford.edu/entries/social-choice/"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "078",
+      "name": "Permutation Entropy (Ordinal-Pattern Entropy)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://github.com/raphaelvallat/antropy/blob/master/src/antropy/entropy.py",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC8392665/"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "079",
+      "name": "PageRank Link-Structure Centrality",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.link_analysis.pagerank_alg.pagerank.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    },
+    {
+      "id": "080",
+      "name": "Count-Min Sketch (CMS)",
+      "origin_file": "lateral_discovery_atlas_batch_008.html",
+      "origin_sha256": "18a872b5f496151597109c107c88137c28c7291ff7124e38a3b408ff0df7fdcb",
+      "source_urls": [
+        "https://apache.github.io/datasketches-python/main/frequency/count_min_sketch.html",
+        "https://www.cs.ox.ac.uk/people/graham.cormode/pubs/html/CormodeMuthukrishnan04CMJalg.html"
+      ],
+      "implementation_status": "REFERENCE_ONLY"
+    }
+  ]
+}

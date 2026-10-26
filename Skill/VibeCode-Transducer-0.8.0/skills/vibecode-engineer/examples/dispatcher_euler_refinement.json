@@ -1,0 +1,64 @@
+{
+  "allow_writes": false,
+  "multimodel_problem": {
+    "goal": "Compare finite-step survival approximation against a declared continuum reference",
+    "target_claim": "Error at aligned time 1 is <= 0.02 (declared synthetic tolerance)",
+    "source_id": "synthetic-survival-v0.6",
+    "representation": {
+      "entity": "surviving units",
+      "unit": "survival fraction",
+      "measurement_scale": "ratio",
+      "observation_map": "same time coordinate and normalized initial state",
+      "dimensionless": true
+    },
+    "models": [
+      {
+        "id": "disc",
+        "domain": "discrete-time",
+        "operator": "x[k+1]=(1-rh)x[k]",
+        "assumptions": [
+          "constant rate",
+          "rh<=1"
+        ]
+      },
+      {
+        "id": "cont",
+        "domain": "continuous-time",
+        "operator": "dx/dt=-rx",
+        "assumptions": [
+          "constant rate",
+          "x(0)=1"
+        ]
+      }
+    ],
+    "bridges": [
+      {
+        "from": "disc",
+        "to": "cont",
+        "kind": "sample-and-euler-discretize",
+        "preserved": "common state at aligned time",
+        "lost_or_unverified": "finite-step error and empirical process fit"
+      }
+    ],
+    "probes": [
+      {
+        "id": "euler",
+        "type": "euler_decay",
+        "model_ids": [
+          "disc",
+          "cont"
+        ],
+        "parameters": {
+          "rate": 0.7,
+          "step": 0.5,
+          "duration": 1
+        }
+      }
+    ],
+    "decision": {
+      "error_tolerance": 0.02
+    }
+  },
+  "max_refinements": 5,
+  "mahajan_case": "gaussian_lumping"
+}

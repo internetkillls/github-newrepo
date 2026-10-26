@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import { mkdtempSync,mkdirSync,copyFileSync,cpSync,writeFileSync,readFileSync,rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve,dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
+import {writeExecutionFixture} from '../tests/execution-fixture.mjs';
+const dir=mkdtempSync(resolve(tmpdir(),'rcc-forward-'));
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+try {
+  mkdirSync(resolve(dir,'bin'),{recursive:true});
+  mkdirSync(resolve(dir,'runtime/chatgpt-pro-line/bin'),{recursive:true});
+  copyFileSync(resolve(root,'bin/rcc-consortium'),resolve(dir,'bin/rcc-consortium'));
+  cpSync(resolve(root,'lib'),resolve(dir,'lib'),{recursive:true});
+  cpSync(resolve(root,'policies'),resolve(dir,'policies'),{recursive:true});
+  mkdirSync(resolve(dir,'runtime/chatgpt-pro-line/src'),{recursive:true});
+  copyFileSync(resolve(root,'runtime/chatgpt-pro-line/src/cdp-client.mjs'),resolve(dir,'runtime/chatgpt-pro-line/src/cdp-client.mjs'));
+  copyFileSync(resolve(root,'runtime/chatgpt-pro-line/src/atomic-json.mjs'),resolve(dir,'runtime/chatgpt-pro-line/src/atomic-json.mjs'));
+  copyFileSync(resolve(root,'runtime/chatgpt-pro-line/src/conversation-url.mjs'),resolve(dir,'runtime/chatgpt-pro-line/src/conversation-url.mjs'));
+  writeFileSync(resolve(dir,'package.json'),'{"type":"module"}');
+  writeFileSync(resolve(dir,'runtime/chatgpt-pro-line/bin/chatgpt-pro'),'console.log(JSON.stringify(process.argv.slice(2)));');
+  const run=args=>spawnSync(process.execPath,[resolve(dir,'bin/rcc-consortium'),...args],{cwd:dir,encoding:'utf8'});
+  assert.equal(run(['workers','spawn','--case=test','--roles=review','--dry-run']).status,0);
+  const statePath=resolve(dir,'.devspace/rcc/test/state.json');
+  const state=JSON.parse(readFileSync(statePath,'utf8'));
+  state.workers[0].status='BOUND';state.workers[0].targetId='fixture-target';
+  writeFileSync(statePath,JSON.stringify(state));
+  const fixture=writeExecutionFixture(dir,dir,{id:'test',roles:['review']});
+  const base=['worker','send','--case=test','--role=review','--prompt='+fixture.promptFor('review')];
+  const result=run([...base,'--model=GPT-6.1 Sol','--level=High','--upload-file=example.md']);
+  assert.equal(result.status,0,result.stderr);
+  const argv=JSON.parse(result.stdout);
+  for(const flag of ['--model=GPT-6.1 Sol','--level=High','--upload-file=example.md'])assert.ok(argv.includes(flag));
+  assert.notEqual(run([...base,'--level=']).status,0);
+  assert.notEqual(run(['worker','send','--case=test','--role=absent','--prompt=x']).status,0);
+  console.log(JSON.stringify({ok:true,tested:['model-level-upload-forwarded','empty-option-rejected','missing-role-rejected']}));
+} finally {rmSync(dir,{recursive:true,force:true});}

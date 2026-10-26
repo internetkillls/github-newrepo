@@ -1,0 +1,10 @@
+{
+  "goal":"Test whether a hidden gain and initial state are individually identifiable",
+  "target_claim":"Output y(t) uniquely recovers gain and initial state",
+  "source_id":"synthetic-decay-symmetry-v0.6",
+  "representation":{"entity":"decaying latent state","unit":"scaled output","measurement_scale":"ratio","observation_map":"y(t)=gain*x0*exp(-r*t)","dimensionless":false},
+  "models":[{"id":"latent","domain":"continuous-hidden","operator":"x(t)=x0 exp(-r t)","assumptions":["constant r"]},
+            {"id":"external","domain":"continuous-observation","operator":"y(t)=gain*x(t)","assumptions":["unknown gain"]}],
+  "bridges":[{"from":"latent","to":"external","kind":"observation-map","preserved":"observable product gain*x0","lost_or_unverified":"individual gain and initial state"}],
+  "probes":[{"id":"symmetry","type":"inverse_ambiguity","model_ids":["latent","external"],"parameters":{"rate":0.7,"gain":3,"initial":2,"scale":2,"times":[0,0.5,1,2]}}]
+}

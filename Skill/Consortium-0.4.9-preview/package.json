@@ -1,0 +1,32 @@
+{
+  "name": "reasoning-consortium-controller",
+  "version": "0.4.9-preview",
+  "private": true,
+  "type": "module",
+  "description": "Local runtime package for Reasoning Consortium Controller.",
+  "bin": {
+    "rcc-consortium": "bin/rcc-consortium",
+    "rcc-queue": "bin/rcc-queue",
+    "rcc-deferred": "bin/rcc-deferred",
+    "rcc-recovery": "bin/rcc-recovery"
+  },
+  "scripts": {
+    "selftest": "node scripts/runtime-selftest.mjs",
+    "test:ir": "node scripts/ir-runtime-selftest.mjs",
+    "test:distribution": "node scripts/distribution-selftest.mjs",
+    "test:local": "node --test tests/local-contract.test.mjs",
+    "test:completion": "node scripts/completion-evidence-selftest.mjs && node scripts/completion-installer-selftest.mjs",
+    "completion:inspect": "node scripts/completion-guard-install.mjs",
+    "completion:apply": "node scripts/completion-guard-install.mjs --apply",
+    "test:queue": "node --test tests/queue-manager.test.mjs",
+    "test:handlers": "node --test tests/conversation-url.test.mjs tests/control-policy.test.mjs tests/transport-binding.test.mjs",
+    "test:emergency": "node --test tests/emergency-delivery.test.mjs tests/recovery-incidents.test.mjs tests/recovery-incident-cli.test.mjs",
+    "test:deferred": "node --test tests/deferred-handoff.test.mjs",
+    "test:recovery": "node --test tests/cdp-recovery.test.mjs tests/recovery-inspect.test.mjs tests/model-level-preservation.test.mjs tests/queue-journal.test.mjs tests/recovery-incidents.test.mjs tests/recovery-incident-cli.test.mjs tests/live-completion-review.test.mjs tests/transport-binding.test.mjs tests/transport-binding-cli.test.mjs tests/output-gate.test.mjs tests/automatic-review.test.mjs",
+    "test:execution": "node --test tests/execution-contract.test.mjs tests/transport-binding-cli.test.mjs",
+    "test:audit": "node --test tests/audit-regressions.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

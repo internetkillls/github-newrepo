@@ -1,0 +1,8 @@
+{
+  "task_kind":"trace",
+  "goal":"Verify whether COMMIT strictly precedes ACK within each complete trace attempt.",
+  "expected_behavior":"COMMIT strictly precedes ACK within one attempt.",
+  "observed_behavior":"One fully instrumented synthetic attempt has ACK without COMMIT.",
+  "trace_complete":true,
+  "events":[{"case_id":"synthetic","attempt_id":"1","event":"ACK","timestamp":"2026-10-23T05:00:00+07:00"}]
+}

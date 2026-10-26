@@ -1,0 +1,222 @@
+{
+  "schema": "rcc.verification.v1",
+  "at": "2026-10-16T18:54:33.957Z",
+  "sourceVersion": "0.4.5-preview",
+  "verificationBeforePublication": true,
+  "combinedTests": {
+    "passed": 100,
+    "failed": 0,
+    "sourceFingerprintsVerified": 34
+  },
+  "distribution": {
+    "passed": 14,
+    "failed": 0,
+    "earlierFixtureDependencyFailurePreserved": true
+  },
+  "reviewPolicy": {
+    "schema": "rcc.review-policy.v1",
+    "timeoutMs": 20000,
+    "stableMs": 4000,
+    "pollMs": 1000,
+    "sampleTimeoutMs": 2000,
+    "minTerminalPolls": 3,
+    "minPollSpanMs": 1000,
+    "maxSamples": 21,
+    "sha256": "05cf42da8678c8451b47f45c4e02da2e0420f668c8faf4d3292ee38400dd15b0"
+  },
+  "browserEvidence": {
+    "automaticReview": {
+      "at": "2026-10-16T18:42:18.534Z",
+      "status": "PASS",
+      "scope": "Default live reviewer + real Chrome intercepted fixture + queue/output gates. Worker transport callbacks and transport receipt were fixtures, not real ChatGPT submissions.",
+      "checks": [
+        "real DOM raw anchor/response hashes",
+        "scoped code block extraction",
+        "default browser reviewer",
+        "required bytes captured and hashed",
+        "second fixture job dispatched only after review"
+      ],
+      "fixtureDispatchCallbacks": 2,
+      "actualChatGptMessagesSent": 0,
+      "existingTabsModified": false,
+      "network": "All fixture target requests fulfilled locally through Fetch interception",
+      "interceptedRequests": 3,
+      "errors": [],
+      "fixtureTabClosed": true
+    },
+    "ownedBrowserCrash": {
+      "at": "2026-10-16T18:52:17.089Z",
+      "status": "PASS",
+      "scope": "Actual dedicated Chrome process killed and restarted using its own temporary profile. Test driver restored intercepted fixture content; transport receipt/callback were synthetic. This is not autonomous restart of an existing browser or a production ChatGPT recovery.",
+      "firstPid": 10048,
+      "firstPort": 55027,
+      "secondPid": 22388,
+      "secondPort": 52509,
+      "firstTargetId": "7888B2BAD4F99B3841AE93BDC8D51BF2",
+      "secondTargetId": "37B257AAB78AB70C7AB688172D5555B9",
+      "processExit": {
+        "code": 1,
+        "signal": null
+      },
+      "pendingErrorCode": "browser.cdp_socket_error",
+      "pendingRequestsAfterCrash": 0,
+      "queueBeforeRecovery": "TRANSPORT_RETURNED",
+      "bindingAfterRestart": "UNIQUE_REBIND_CANDIDATE",
+      "queueAfterVerifiedReview": "REVIEWED_WITNESS",
+      "fixtureDispatchCallbacks": 1,
+      "actualChatGptMessagesSent": 0,
+      "emergencyPacketPersisted": true,
+      "emergencyDelivered": false,
+      "existingChromeProcessesTouched": false,
+      "interceptedRequests": 4,
+      "interceptionErrors": [],
+      "ownedBrowserStopped": true,
+      "temporaryProfileRemoved": true
+    }
+  },
+  "scopeLimitations": [
+    "Transport callbacks and receipts in browser tests were synthetic; no production ChatGPT message sent",
+    "Test driver restarted its owned Chrome and restored intercepted fixture content; no independent RCC restart supervisor was implemented",
+    "Windows URI activation, actual agent diagnostic delivery/ACK and production interrupted-worker handoff remain unverified",
+    "Capacity admission across stages, per-job policy migration and incident-wide elapsed budgets remain incomplete",
+    "No installed cache or active production worker was modified"
+  ],
+  "sourceFingerprints": [
+    {
+      "path": "tests/cdp-recovery.test.mjs",
+      "sha256": "dda86dbb81f32de3825a8a3a70edf9a3aec714e4c35ba3911466f841f2246ec5"
+    },
+    {
+      "path": "tests/recovery-inspect.test.mjs",
+      "sha256": "2597b214bcf26dbbace0c1e9b965f7fa9c0a7404c7e37f619966205f9e678341"
+    },
+    {
+      "path": "tests/model-level-preservation.test.mjs",
+      "sha256": "9df2edc68b6592422e6d6304dcf8299a1dbda38bd911da9846b15bc672eb70f0"
+    },
+    {
+      "path": "tests/queue-manager.test.mjs",
+      "sha256": "2a58d0c1ba9bfa48637583edb05a6b861ebbb61cbfc54f6e5030cb69fcfd20ac"
+    },
+    {
+      "path": "tests/deferred-handoff.test.mjs",
+      "sha256": "1aba3a6b5b83c14eed15ec65a7dd0b48554ff29be2a621b65fe5f1e9f0190c85"
+    },
+    {
+      "path": "tests/queue-journal.test.mjs",
+      "sha256": "0da9f6786f5908ca3f23904416ffd1a2efbfc2114aba299ea75a5cade9763304"
+    },
+    {
+      "path": "tests/recovery-incidents.test.mjs",
+      "sha256": "feaf13b5241338714cb3b9ba057b217df57b202f099a09de16a0bf04cb159577"
+    },
+    {
+      "path": "tests/recovery-incident-cli.test.mjs",
+      "sha256": "4a1d9c444d3d319624eabace24db9bd22cca89e35d55cce4fb1be85d1606c51d"
+    },
+    {
+      "path": "tests/live-completion-review.test.mjs",
+      "sha256": "7fb6d920b2b54daa25ac0a17dc3c4e489441b0425f6d85df2d0d664ab602ca3f"
+    },
+    {
+      "path": "tests/transport-binding.test.mjs",
+      "sha256": "6e49673ed8cf4ffcb53a38363e4985195bd63fa294a0718b9c7c3f0b8c149745"
+    },
+    {
+      "path": "tests/transport-binding-cli.test.mjs",
+      "sha256": "65226ea0ab565101456f9cfc97aab72863b56a7c53541c7d47cd41970769307c"
+    },
+    {
+      "path": "tests/output-gate.test.mjs",
+      "sha256": "5b2be4c10ef2c4f3153d9852c80f7a10c0c51a5977c6ffa909152596f47e3269"
+    },
+    {
+      "path": "tests/automatic-review.test.mjs",
+      "sha256": "3d540c6aab694046058ff53bbddc4ad654c5c3cd996ccd01067abd2bcf0a6451"
+    },
+    {
+      "path": "tests/conversation-url.test.mjs",
+      "sha256": "57e9fd856dbae769e970e6ff147ac4b380d64f1b505f1db9a09ef8cd7fdb35b0"
+    },
+    {
+      "path": "tests/control-policy.test.mjs",
+      "sha256": "0c1572311fc3c0e17ecaf3726e82caa6ca4cebd2d3ad9b66095ce465474af6be"
+    },
+    {
+      "path": "lib/control-policy.mjs",
+      "sha256": "28c2cce50473c2d5809e04efbde6ac747309195b05975cf6d2fa46b26d24dc73"
+    },
+    {
+      "path": "runtime/chatgpt-pro-line/src/conversation-url.mjs",
+      "sha256": "31c5cd417bab4ddaffa583437d89571652a048378a09447c866bfe5c18ee9680"
+    },
+    {
+      "path": "runtime/chatgpt-pro-line/src/transport-receipt.mjs",
+      "sha256": "0e080ec002eb26897297978d6ef2ed6f8f3a49e7cdfbf39e8ab6053a642a5ed8"
+    },
+    {
+      "path": "runtime/chatgpt-pro-line/src/chatgpt-sessions.mjs",
+      "sha256": "cfd9164b8ce18d90de570fb3749afecc0adbd4bc062792063fc8fb7bcaff9ab4"
+    },
+    {
+      "path": "runtime/chatgpt-pro-line/src/cdp-client.mjs",
+      "sha256": "278a63ae783a5eb78e8384bed2cf78f9d2449185e870a37f6904a902ccfb782e"
+    },
+    {
+      "path": "lib/queue-manager.mjs",
+      "sha256": "bfe4d031f6cabe624c812d4da82a0f834d27f366adfa3d4069465efd2f8bb42b"
+    },
+    {
+      "path": "lib/queue-journal.mjs",
+      "sha256": "79d16db34ea3be564103736689a588c48a2f6bd7757b842567e250a643487ebd"
+    },
+    {
+      "path": "lib/recovery-incidents.mjs",
+      "sha256": "9a635c155e50f65696448647d467027bc213b4fca7a7f1229a73c2ad779efdc5"
+    },
+    {
+      "path": "lib/durable-record.mjs",
+      "sha256": "ff09b055a0888fc5aa7265df74698e80c35faffd2b285dc39864b0ac423a2901"
+    },
+    {
+      "path": "lib/live-completion-review.mjs",
+      "sha256": "638a14fa2b3f0a5810761e1af2d56262b4937980e10329ad6ee6b61ecd026c8c"
+    },
+    {
+      "path": "lib/transport-binding.mjs",
+      "sha256": "1a52a7d1858d2c31be1cf4a4f1bd99e9cfc46775de939697b78c7dbfc54fc8bd"
+    },
+    {
+      "path": "lib/output-gate.mjs",
+      "sha256": "9967852971224dfb744fce8eb7900bd9f6e49bd851b107fb13f45c15853095a0"
+    },
+    {
+      "path": "lib/queue-live-review.mjs",
+      "sha256": "7c6430c5356db81a725d5b174d60dbcd948d7c577c0f22ad2e68ca3f0117e67b"
+    },
+    {
+      "path": "lib/deferred-handoff.mjs",
+      "sha256": "a68a5e4e628851e2cfc2ef7514c6355e9a9af235984e442d64bffb7f78a2f3c9"
+    },
+    {
+      "path": "bin/rcc-recovery",
+      "sha256": "8d94b7a259c7d23fbdbbf2e3fc843e82bae065d166113ec373649647d3c9860a"
+    },
+    {
+      "path": "bin/rcc-consortium",
+      "sha256": "b798944d645ca3c40c71d31bba668cabe34e9cb288d70db9f7459bd0224df0d2"
+    },
+    {
+      "path": "bin/rcc-queue",
+      "sha256": "0d1cd5b09a6d49cd1dda8cb8cf795c3a963561ab4b85e7437a83252951af15dd"
+    },
+    {
+      "path": "bin/rcc-deferred",
+      "sha256": "4142a88fe30289ab8d100591f8849749505ef7c642aaeb5c876d09849b411c12"
+    },
+    {
+      "path": "runtime/chatgpt-pro-line/scripts/chatgpt-call.mjs",
+      "sha256": "68c22d35b7df072b5568a41a507c043fca1452e2ec956d1d918b8a77b557f198"
+    }
+  ]
+}

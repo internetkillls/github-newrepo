@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import {mkdtempSync,mkdirSync,copyFileSync,cpSync,writeFileSync,readFileSync,existsSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {resolve,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const dir=mkdtempSync(resolve(tmpdir(),'rcc-provisioning-'));
+try{
+ mkdirSync(resolve(dir,'bin'),{recursive:true});
+ mkdirSync(resolve(dir,'runtime/chatgpt-pro-line/src'),{recursive:true});
+ mkdirSync(resolve(dir,'runtime/chatgpt-pro-line/bin'),{recursive:true});
+ copyFileSync(resolve(root,'bin/rcc-consortium'),resolve(dir,'bin/rcc-consortium'));
+ cpSync(resolve(root,'lib'),resolve(dir,'lib'),{recursive:true});
+ for(const source of ['cdp-client.mjs','atomic-json.mjs','conversation-url.mjs'])copyFileSync(resolve(root,'runtime/chatgpt-pro-line/src',source),resolve(dir,'runtime/chatgpt-pro-line/src',source));
+ writeFileSync(resolve(dir,'package.json'),'\u007b"type":"module"\u007d');
+ const vendor=resolve(dir,'runtime/chatgpt-pro-line/bin/chatgpt-pro');
+ writeFileSync(vendor,`import {appendFileSync} from 'node:fs';
+ appendFileSync('vendor-calls.txt','called\\n');
+ console.log(JSON.stringify({ok:true,result:{target:{},room:{alias:'unverified'}}}));\n`);
+ const run=(args)=>spawnSync(process.execPath,[resolve(dir,'bin/rcc-consortium'),...args],{cwd:dir,encoding:'utf8'});
+ const command=['workers','spawn','--case=ambiguous','--roles=review'];
+ const first=run(command);
+ assert.notEqual(first.status,0,first.stdout);
+ assert.match(first.stderr,/No verified CDP target ID/);
+ const statePath=resolve(dir,'.devspace/rcc/ambiguous/state.json');
+ const state=JSON.parse(readFileSync(statePath,'utf8'));
+ assert.equal(state.workers[0].status,'PROVISIONING');
+ assert.equal(state.workers[0].targetId,null);
+ assert.equal(readFileSync(resolve(dir,'vendor-calls.txt'),'utf8').trim(),'called');
+ const second=run(command);
+ assert.notEqual(second.status,0);
+ assert.match(second.stderr,/not verified/);
+ assert.equal(readFileSync(resolve(dir,'vendor-calls.txt'),'utf8').trim(),'called','must not retry ambiguous tab creation');
+ assert.notEqual(run(['worker','send','--case=ambiguous','--role=review','--prompt=hi']).status,0);
+ // A separate case with explicit target evidence may transition to BOUND.
+ writeFileSync(vendor,`console.log(JSON.stringify({ok:true,result:{target:{id:'fixture-target',url:'https://chatgpt.com/c/fixture'}}}));\n`);
+ const positive=run(['workers','spawn','--case=confirmed','--roles=review']);
+ assert.equal(positive.status,0,positive.stderr);
+ const confirmed=JSON.parse(readFileSync(resolve(dir,'.devspace/rcc/confirmed/state.json'),'utf8'));
+ assert.equal(confirmed.workers[0].status,'BOUND');
+ assert.equal(confirmed.workers[0].targetId,'fixture-target');
+ console.log(JSON.stringify({ok:true,tested:['pending-state-on-ambiguous-response','no-duplicate-retry','send-blocked-before-bound','explicit-target-confirmation']}));
+}finally{rmSync(dir,{recursive:true,force:true});}

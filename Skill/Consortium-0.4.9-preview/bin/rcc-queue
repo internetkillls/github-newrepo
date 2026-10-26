@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+import {operationalStatus} from '../lib/operational-status.mjs';
+/** Conservative independent C0 queue facade for existing RCC `worker send`. */
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import { inspectQueue, enqueue, dispatchOne, reviewJob, recoverQueue,verifyQueuedJob } from '../lib/queue-manager.mjs';
+import {assertExecution} from '../lib/execution-contract.mjs';
+const root = process.cwd();
+const pluginRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const mainCli = resolve(pluginRoot, 'bin/rcc-consortium');
+function opt(key) { const a = process.argv.find(x => x.startsWith(`--${key}=`));return a ? a.slice(key.length+3) : null; }
+function many(key) { return process.argv.filter(x=>x.startsWith(`--${key}=`)).map(x=>x.slice(key.length+3)); }
+const [group,action] = process.argv.slice(2);
+async function run() {
+ if(group!=='queue')throw new Error('Usage: rcc-queue queue add|list|run|review|verify|recover');
+ const id=opt('case');if(!id)throw new Error('Provide --case=<id>');
+ let value;
+ if(action==='list')value=inspectQueue(root,id);
+ else if(action==='status'){const q=inspectQueue(root,id);value={...q,operational:operationalStatus(q)};}
+ else if(action==='add'){
+  let outputContract=null;if(opt('output-contract')){const bytes=readFileSync(resolve(opt('output-contract')));if(bytes.length>65536)throw Error('queue.output_contract_too_large');outputContract=JSON.parse(bytes.toString('utf8'));}
+  value=enqueue(root,{case:id,role:opt('role'),promptFile:opt('prompt-file'),model:opt('model'),level:opt('level'),uploadFiles:many('upload-file'),key:opt('key'),outputContract});
+ }
+ else if(action==='run') {
+  const pending=inspectQueue(root,id).jobs.find(j=>j.status==='PENDING');
+  if(pending)assertExecution(root,id,{pluginRoot,file:opt('execution-contract')||undefined,role:pending.role,prompt:readFileSync(pending.prompt.path,'utf8')});
+  value=await dispatchOne(root,id,job=>{
+   const args=[mainCli,'worker','send',`--case=${job.caseId}`,`--role=${job.role}`,`--prompt-file=${job.prompt.path}`];
+   if(job.model)args.push(`--model=${job.model}`);if(job.level)args.push(`--level=${job.level}`);
+   if(opt('execution-contract'))args.push(`--execution-contract=${resolve(opt('execution-contract'))}`);
+   for(const file of job.uploads)args.push(`--upload-file=${file.path}`);
+   // No shell evaluation, one invocation, no automatic resend, bounded blocking.
+   const result=spawnSync(process.execPath,args,{cwd:root,env:{...process.env,RCC_QUEUE_JOB_ID:job.id,RCC_QUEUE_PAYLOAD_HASH:job.payloadHash,RCC_INVOCATION_TOKEN:job.invocationToken},encoding:'utf8',timeout:720_000,maxBuffer:4*1024*1024,windowsHide:true});
+   let phaseReceipt=null;try{phaseReceipt=JSON.parse(readFileSync(resolve(root,'.devspace','rcc',job.caseId,'outputs',job.role+'-transport.json'),'utf8'))}catch{}
+   return {code:result.status,error:result.error,signal:result.signal,stdout:result.stdout||'',stderr:result.stderr||'',phaseReceipt};
+  });
+ } else if(action==='verify')value=await verifyQueuedJob(root,id,{jobId:opt('job'),port:Number(opt('port')||9222)});
+ else if(action==='review')value=reviewJob(root,id,{jobId:opt('job'),receiptFile:opt('receipt-file')});
+ else if(action==='recover')value=recoverQueue(root,id,{approval:opt('approve')});
+ else throw new Error('Unknown queue action; add|list|run|review|recover');
+ process.stdout.write(JSON.stringify(value,null,2)+'\n');
+ if(value.ok===false)process.exitCode=2;
+}
+run().catch(e=>{console.error(JSON.stringify({ok:false,error:String(e.message||e)}));process.exitCode=1;});

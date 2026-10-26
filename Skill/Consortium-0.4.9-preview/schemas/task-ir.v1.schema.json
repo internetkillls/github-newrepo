@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"urn:rcc:task-ir:v1",
+  "title":"RCC Task IR v1",
+  "type":"object",
+  "required":["schema","caseId","origin","objective","router","coding","evidence","stages","provenance","limits","createdAt"],
+  "properties":{
+    "schema":{"const":"rcc.task-ir.v1"},
+    "caseId":{"type":"string","minLength":1},
+    "origin":{"type":"object","required":["kind","sha256","bytes","observedTerms"]},
+    "objective":{"type":"object","required":["userText","extraction"]},
+    "router":{"type":"object","required":["control","epistemics","audit","independence"]},
+    "coding":{"type":"object","required":["discussionFormat","codexDefault","codeChanges"]},
+    "evidence":{"type":"object","required":["primary","status","unknowns","citations"]},
+    "stages":{"type":"array","items":{"type":"string"}},
+    "provenance":{"type":"object","required":["thinkingMode","privateChainOfThought"]},
+    "limits":{"type":"object","required":["noAutonomousSending","noImplicitRemoteServer","noUnboundedRetry"]},
+    "createdAt":{"type":"string"}
+  },"additionalProperties":false
+}

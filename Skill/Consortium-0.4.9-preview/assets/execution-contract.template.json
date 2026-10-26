@@ -1,0 +1,21 @@
+{
+  "schema": "rcc.execution-contract.v1",
+  "caseId": "",
+  "profile": "general",
+  "controllers": {"sha256": ""},
+  "context": {"generalStory": "", "humanEpisode": "", "episodeOrigin": "scenario", "goal": "", "sourceIdentity": ""},
+  "functions": [],
+  "decision": {"chosen": "", "rival": "", "tradeoff": "", "falsifier": ""},
+  "workers": [],
+  "maxActive": 3,
+  "activeRoles": [],
+  "dependencies": [],
+  "boundaries": [],
+  "transport": {"uncertainPolicy": "reconcile_never_resend", "completion": "anchored_affirmative_terminal", "mutations": "serialized", "uncertainRoles": [], "deliveryProbe": "", "receiverAck": ""},
+  "recovery": {"maxAttempts": 1, "runnerOwnership": "", "stopCondition": ""},
+  "measurement": {"metric": "", "baselineOrDebt": "", "candidateOrDebt": ""},
+  "claims": [],
+  "verticalJourney": {"status": "unverified", "reason": ""},
+  "statuses": {"transport": "NOT_STARTED", "artifact": "PENDING", "behavior": "UNVERIFIED", "release": "NOT_REQUESTED"},
+  "closure": {"interviews": {"status": "pending", "independence": "I0", "humanFeedback": false, "reason": ""}, "controllerReviews": [], "materialsIndex": "", "materials": null, "debts": [], "reopenCondition": ""}
+}

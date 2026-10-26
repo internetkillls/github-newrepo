@@ -1,0 +1,25 @@
+{
+  "verified": true,
+  "workers": [
+    {
+      "role": "constructor",
+      "targetId": "130590563AEF365007EEA68875BC402F"
+    },
+    {
+      "role": "independent",
+      "targetId": "36F7E8D043A3D158E1522A01708BA255"
+    },
+    {
+      "role": "skeptic",
+      "targetId": "8AE3F5AC80B518DD724AC9A7287DA704"
+    },
+    {
+      "role": "verifier",
+      "targetId": "B78B5674F1EB05AAD7CF9EC9927C940A"
+    },
+    {
+      "role": "merge",
+      "targetId": "362079D3815D7368D6C233376A1BDA8E"
+    }
+  ]
+}

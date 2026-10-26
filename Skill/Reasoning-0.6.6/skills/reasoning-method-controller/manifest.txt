@@ -1,0 +1,29 @@
+Reasoning Method Controller 0.6.0
+
+Runtime authority:
+- SKILL.md (route → stage → operator controller)
+
+New v0.6.0 module:
+- references/stage-machine.md
+
+Updated:
+- references/operator-index.md (now a stage-local subrouter)
+- references/behavioral-witness.md
+- references/failure-modes.md
+- README.md
+- SKETCH.md
+- plugin.json
+- .codex-plugin/plugin.json
+
+New regression:
+- tests/replay-stage-machine.md
+
+Core change:
+- explicit route families;
+- S0–S9 conditional stages;
+- stage entry/guardrail/exit/handoff contract;
+- discriminating test stage;
+- repair-to-earliest-failed-dependency;
+- explicit closure change-condition.
+
+Existing v0.5.x semantic depth, orientation/umbrella mapping, provenance, interaction, world-remap, dual closure, policy-content firewall, formalization, knowledge assets, and citation controls remain inherited and conditional. Legacy files/assets remain physically present because account plugin updates overlay and cannot delete; presence must not determine inquiry content.

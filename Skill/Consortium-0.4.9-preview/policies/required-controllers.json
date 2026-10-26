@@ -1,0 +1,392 @@
+{
+  "schema": "rcc.required-controllers.v1",
+  "versions": {
+    "RMC": "0.6.5",
+    "AntiSlop": "0.4.0"
+  },
+  "bundle": "RCC-REQUIRED-CONTROLLERS.zip",
+  "sha256": "de711ff5e80f3ce7698a24854ca245d7385bfabd521eb86eb6b6658804a4c776",
+  "bytes": 158738,
+  "sourceMode": "Pinned instruction snapshots, not remote plugin/tool activation. Re-pin explicitly after source-version review.",
+  "entrypoints": [
+    "RMC/skills/reasoning-method-controller/SKILL.md",
+    "RMC/skills/reasoning-method-controller/references/stage-machine.md",
+    "RMC/skills/task-intent-boundary/SKILL.md",
+    "AntiSlop/skills/antislop-router/SKILL.md"
+  ],
+  "files": [
+    {
+      "path": "RMC/skills/constitutive-problem-intent/SKILL.md",
+      "bytes": 6485,
+      "sha256": "52922ffef948b42d4d5a1f678a8a3097f683bff07ca34b2b873ce0b2b386a36c"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/50-refinements.md",
+      "bytes": 4206,
+      "sha256": "b8d0a8b099f97b5e629a7079b4873ca911b81b5374ab4c1ee3dad7bb566e4813"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/academic-citation-discipline.md",
+      "bytes": 2532,
+      "sha256": "39b9208be00a183e084ac499000c18bb40af2b517643d9921f8948ce630daaad"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/acquisition-status.md",
+      "bytes": 2621,
+      "sha256": "e068f2b2883d2f8e3f74e6189e9579478f92e1dbe8bb05c43f384987149ba942"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/artifact-origin-and-term-sense.md",
+      "bytes": 2150,
+      "sha256": "d4b8726b63482e1f5bc0b72e21a75274766e0c81d9b6507117dd69a4d51831a1"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/behavioral-witness.md",
+      "bytes": 4000,
+      "sha256": "7bef17e9578cdb1a1ecd4278a19ddf07401e9269f2f6ecdaddc90d085a52952e"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/bundled-knowledge.md",
+      "bytes": 1064,
+      "sha256": "8b835df5e1a0caf585ddd79b954e148310b0398248018fc6b14d0f85b6679f60"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/domain-adapters.md",
+      "bytes": 1948,
+      "sha256": "09c25bcf27bdbfeb14d6961fd3d2c41828f7872497d6f24d5a7c728a72fb6c2d"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/failure-modes.md",
+      "bytes": 2427,
+      "sha256": "607cea942c89437b73611d088ea7692a699d91e8a8335916d6b2c4f622921f16"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/formalization-operators.md",
+      "bytes": 3703,
+      "sha256": "25832b3c160c057bebb95d7e2d0b46f71695712938f4dd5754ebf48f18595ac5"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/inquiry-admissibility.md",
+      "bytes": 6844,
+      "sha256": "78ed8f1c0a94581971cbacd41d4a6faa800fe2195e0b608f4b4fe158a5683a9e"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/interactional-intelligence.md",
+      "bytes": 5606,
+      "sha256": "8025de96db1c51216695e1d740cca9fb55a8a03d9d72e50d6aa9eb94cb6ac38a"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/knowledge-sources.md",
+      "bytes": 832,
+      "sha256": "e27b9d7cfe2fe8dd7e5fcd9b224519db80a0f0d1dab38698e42282bab755a7e2"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/online-access.md",
+      "bytes": 2029,
+      "sha256": "99382114248a95af04ef4a5dc3cf1cfcfcd1c21d50cca5f1ed21fa8f10c15cfe"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/operator-index.md",
+      "bytes": 5245,
+      "sha256": "e219322e1cdd118eff043fe5356a5d999c93891fb412674cc3783b52747f2ebf"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/orientation-bundle-and-umbrella-mapping.md",
+      "bytes": 9104,
+      "sha256": "302a02fa07c01f05e2c84747e44c587d9f95d66a06e63062654a35e4a4d00c60"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/policy-content-firewall.md",
+      "bytes": 1655,
+      "sha256": "5b1a6dfdf44c3dfe5065eac0e4f2830fb6e2dc1266285c9c8f4df1437f221445"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/prose-reconstruction.md",
+      "bytes": 3666,
+      "sha256": "bd31dc5cc2b8559f14a13df63b1aa4a95fc2cc38b8eb531e0c819a2bffb379be"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/provenance-transport.md",
+      "bytes": 2673,
+      "sha256": "f7f17c85eeb61288c29dd2dabf0d164931afc83093919bd1b28d9b866f6e79c1"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/reference-indexing.md",
+      "bytes": 3704,
+      "sha256": "16b652c4b7cf16eeee0d7f3f94a5d5fea1afb2ce23ed0295ff50064c75033749"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/reference-registry-v0.5.md",
+      "bytes": 11864,
+      "sha256": "32b1bdd9afa458b5a501025f2fd361c4e96b1478e7daff2806a5cb8299c296c1"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/saturation-closure.md",
+      "bytes": 1984,
+      "sha256": "2bba3292d2022c9f6230d24eb28ffdca29406af84970962fa8b2bfcbf73e4115"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/semantic-depth-and-conceptual-descent.md",
+      "bytes": 8101,
+      "sha256": "2ba47890f63b6192f126090cb7fffb222b8b244d4b921b094450380e3658c2ad"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a01.md",
+      "bytes": 2089,
+      "sha256": "fa84ce0b5c72732fa50916029fd7a32fd8994b937907fcbfcf33f331a7a22ac2"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a02.md",
+      "bytes": 1644,
+      "sha256": "5d38852ee773fb4fe73da959e5aca29e358bdb485e9009f163f849959ef7e6d3"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a03.md",
+      "bytes": 6419,
+      "sha256": "c6ad53dc71d39ffa8f8482cc8bfb24854bd4a99dd2a03cde455e2ea0e63d9f57"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a04.md",
+      "bytes": 8488,
+      "sha256": "fe3f63efd9bc2fd846907ad37b9047055a2c816a40e6692c268ae9814dd80a76"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a05.md",
+      "bytes": 1515,
+      "sha256": "b13962c2ca237612e93c43dad7bed3b7bfc76a664ccde2d0a7daed22a083ec46"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a06.md",
+      "bytes": 4241,
+      "sha256": "1e83718a85f1f2aa986ade1d7ec6d6c8e52ad280daeb931ede26343a9aea1700"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a07.md",
+      "bytes": 1361,
+      "sha256": "3712269b2bf6a0057db71b7eaa71da016436564987363f246ee807af82da1908"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a08.md",
+      "bytes": 2221,
+      "sha256": "d8139e11c4e7ff424e714fbe90ef50f432e70e6d31aead821a0d8f60d58e8edc"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a09.md",
+      "bytes": 3554,
+      "sha256": "bbd5bbc65e4da4b4954a70b632d2ff202e6215cfbbf82144b16b81e6f38ba63c"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a10.md",
+      "bytes": 1877,
+      "sha256": "528c32a841e3155deeb2b0d6d556eb7645be980574e4781ee8bb5e570584993e"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-a11.md",
+      "bytes": 4318,
+      "sha256": "01df5c08ed5ec87113f1fb2cf1faf8e26cd64e847bbf75b057cfc6a952b81078"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c01.md",
+      "bytes": 2043,
+      "sha256": "c7805455013ece5c05a4c42be07c5ab4c12abb3f1c61cee257771d8e612b2ecf"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c02.md",
+      "bytes": 1333,
+      "sha256": "3db0147adb40bc84756cf253286ca5db068965d23a38ba1baecc2f87f214cba4"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c03.md",
+      "bytes": 1301,
+      "sha256": "cb044086363b0eb0f489912aca753835922b5485fe1e916a35eda58f9d40acce"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c04.md",
+      "bytes": 1473,
+      "sha256": "7cb54f05ffe4da25c6c1ae8159ce402901e917689fa36f264bf746e5f9bd1516"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c05.md",
+      "bytes": 1686,
+      "sha256": "58eca6db44308433445a974935657ceb926b1ba029a6be81218e3baef82dbc4a"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c06.md",
+      "bytes": 1391,
+      "sha256": "a279e521941c57043a21f12549545136ffe810372e6cab05408f632d67fb5a0a"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c07.md",
+      "bytes": 1608,
+      "sha256": "a2542c2e2e2b20d5c260aee1e5f5cbad6232c56c087f831bfdd5a80d1c5c9ea2"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c08.md",
+      "bytes": 1687,
+      "sha256": "6f7daeaace528cc355765c2195e8140cdd7aa894cbb2e8845038e9ecce57036e"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c09.md",
+      "bytes": 1377,
+      "sha256": "a788fc0183f31a1453f854e4c8eb31b545fe38e715ea6ba8d6c0a6d3963e24e3"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c10.md",
+      "bytes": 1528,
+      "sha256": "474f7b020ce88777ff685ca41cfaea78fd6a8ccd27190122ac98c0e28453f8b3"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c11.md",
+      "bytes": 1315,
+      "sha256": "a27cd88d09f859d63ef3d756d7484cc8c602192fc7aff5199b5934833cb280e9"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c12.md",
+      "bytes": 1472,
+      "sha256": "99b1684c9a88fd930dc2882efb4822d2bb1b1b18e037fe4ab25c5f400e0a3acc"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-c13.md",
+      "bytes": 1532,
+      "sha256": "1bd794073a3bca89e84488826b998962198c1a0dbe970fa9dbd8505beeecedd7"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/source-contract.md",
+      "bytes": 21209,
+      "sha256": "245a315fb08feb7c1ba00b5a8c0d5b4a89289d23798a5724bb9ac4a574fdb54a"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/stage-machine.md",
+      "bytes": 9969,
+      "sha256": "e0e82801219e917a5a466a6f67e3a8fb21a449b895fafcad0f647c2cdb0acd48"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/thematic-linguistic-jurisdiction.md",
+      "bytes": 3839,
+      "sha256": "518ea14e6f21797285803ba7f302e673fd3ab794890efedbb2cb666e5f7e8367"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/references/world-remap-and-creativity.md",
+      "bytes": 5831,
+      "sha256": "589af4a84633ea5018280b87bdd3ac6c5908a206dc7bc8adfcca76771c0f9e88"
+    },
+    {
+      "path": "RMC/skills/reasoning-method-controller/SKILL.md",
+      "bytes": 19401,
+      "sha256": "cf4138fa83b98dde8b94face825e64d47b6d18375cf68aedd68ad8654a83f844"
+    },
+    {
+      "path": "RMC/skills/semantic-transition-audit/references/evidence-matrix.md",
+      "bytes": 8323,
+      "sha256": "6d01000364779420de2b640345392d39ea134b0fd7fc7159c2d930b0d195460f"
+    },
+    {
+      "path": "RMC/skills/semantic-transition-audit/references/maintenance.md",
+      "bytes": 3561,
+      "sha256": "9e303a60cab6e66be2c3865ac9aa3d4a7f0adde8d7019a667f135c296e5b18be"
+    },
+    {
+      "path": "RMC/skills/semantic-transition-audit/references/rule-contract.md",
+      "bytes": 7264,
+      "sha256": "9a88121d6c15853a5650534308bcb27e0321a0710f98876250599e027f0d166b"
+    },
+    {
+      "path": "RMC/skills/semantic-transition-audit/SKILL.md",
+      "bytes": 6309,
+      "sha256": "8a77e6dbbc94e127fb9d2df4469dcbc853eb9fbeead2f5bbe6c9f70a6d3cc5c9"
+    },
+    {
+      "path": "RMC/skills/task-intent-boundary/references/intent-regression.md",
+      "bytes": 396,
+      "sha256": "6a3bfb1ce9c6de18902342953bd55bccdb52941c9e1a14399ec3976542fd72be"
+    },
+    {
+      "path": "RMC/skills/task-intent-boundary/SKILL.md",
+      "bytes": 3734,
+      "sha256": "767870e043bd0495fcf361fdb800b3ed128f6f6bf7d30b6ad63e8fc2131834c1"
+    },
+    {
+      "path": "AntiSlop/references/engineering-evidence-contract.md",
+      "bytes": 4493,
+      "sha256": "8dddc8cc2052bc9d6ec7df350691353d7787431a5edf6bdff346504b6445decf"
+    },
+    {
+      "path": "AntiSlop/references/engineering-upstreams.md",
+      "bytes": 4812,
+      "sha256": "1d00510cdb64ffade3e315426e1a80cd97c895ebd7ca4908d0051eecdbda9e32"
+    },
+    {
+      "path": "AntiSlop/references/evidence-contract.md",
+      "bytes": 3642,
+      "sha256": "d1da1788d22eca00ec14a242878e0fbb4ccc112af7d175e509154052283f8376"
+    },
+    {
+      "path": "AntiSlop/references/intent-routing-regression.md",
+      "bytes": 661,
+      "sha256": "1fd224c9e50d269d8a965de0cdadbe54b427bd9917eb871b39c867a688958cca"
+    },
+    {
+      "path": "AntiSlop/references/regression-method.md",
+      "bytes": 3106,
+      "sha256": "21186c1115fd51b570dadb1a3f1da08136601a48c251468fd5eabc78f6bc471f"
+    },
+    {
+      "path": "AntiSlop/references/routing-matrix.md",
+      "bytes": 4320,
+      "sha256": "e67a8bd63f092f2941f0d6701fc7d790ffdcf0868750c13ca499a021bf123330"
+    },
+    {
+      "path": "AntiSlop/references/self-recap-method.md",
+      "bytes": 7843,
+      "sha256": "cc03c7a308c14ace8c8a79fbb0ac660f4527ada7f08aa368e81aec9bd3768d45"
+    },
+    {
+      "path": "AntiSlop/references/source-draft-v0.1.md",
+      "bytes": 23525,
+      "sha256": "c68949af9d06d7d15bcd64ac8ae2673611a97ee86e57acb5955474aec1c00ba0"
+    },
+    {
+      "path": "AntiSlop/references/sources.md",
+      "bytes": 1984,
+      "sha256": "32d387c2297b665b6418fba86c72fe4bd1abf98da6f4beb991b879e03f353a01"
+    },
+    {
+      "path": "AntiSlop/references/transcript-import.md",
+      "bytes": 4103,
+      "sha256": "fce0f24c842a02f9c3ef2d9919df130018bb195281e7e39148988d4b74e78a8f"
+    },
+    {
+      "path": "AntiSlop/skills/antislop-router/SKILL.md",
+      "bytes": 5795,
+      "sha256": "c62ffcf8d8578b8de69564ec5fc62f98bc03074db729226e10e66085c84a88b8"
+    },
+    {
+      "path": "AntiSlop/skills/conversation-recap/SKILL.md",
+      "bytes": 4035,
+      "sha256": "4062e1627de1a4be8fe9759bbb377043fd796a45b2cda3d659e2ac46a5ff4c48"
+    },
+    {
+      "path": "AntiSlop/skills/engineering-audit/SKILL.md",
+      "bytes": 5741,
+      "sha256": "e87388bbb2cdd3cd38d927707d4715273d12d4d6f84f6c5c0041354ab60404d8"
+    },
+    {
+      "path": "AntiSlop/skills/intent-substitution-audit/SKILL.md",
+      "bytes": 2480,
+      "sha256": "36be1600660cf6b0ea1489c31c0cf404eb5c9611221a8534ae44641ddea40945"
+    },
+    {
+      "path": "AntiSlop/skills/regression-corpus/SKILL.md",
+      "bytes": 1636,
+      "sha256": "c9a3c4cba36eb05e1a31d69e82ed02d1a1ffbe134b678c7fa51b16763421e677"
+    },
+    {
+      "path": "AntiSlop/skills/slop-audit/SKILL.md",
+      "bytes": 3090,
+      "sha256": "1066bc98ab88f2513e63217319608a5247d0bf13bf95cee006005edd95f9a3f9"
+    }
+  ],
+  "core": "CONTROLLER-CORE.md",
+  "coreBytes": 50882,
+  "coreSha256": "4c884fde29673366268ce281ee54362c7f45995c73c38fa8795bd8c1d914bf48"
+}

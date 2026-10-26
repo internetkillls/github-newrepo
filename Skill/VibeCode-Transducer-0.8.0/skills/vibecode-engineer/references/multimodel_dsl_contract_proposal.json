@@ -1,0 +1,27 @@
+{
+  "schema": "vct-multimodel-contract/proposal-0.1",
+  "status": "DESIGN_ONLY_NOT_A_RUNTIME_COMPILER",
+  "phenomenon": {
+    "kind": "decay_process",
+    "scope": "synthetic_sample",
+    "unit": {"name": "survival_fraction", "measurement_scale": "ratio", "physical_dimensions": "dimensionless"},
+    "observation_map": "fraction of surviving independent units at sampled times",
+    "provenance": "analytic synthetic example"
+  },
+  "models": [
+    {"id": "DISC", "domain": "discrete-time", "state": "x[k]", "operator": "x[k+1]=(1-r*h)*x[k]", "preconditions": ["r>=0", "0<h", "r*h<=1"]},
+    {"id": "CONT", "domain": "continuous-time", "state": "x(t)", "operator": "dx/dt=-r*x", "preconditions": ["r>=0", "x(0)=1"]}
+  ],
+  "bridges": [
+    {"from": "CONT", "to": "DISC", "kind": "sample-and-euler-discretize", "metric": "absolute difference at aligned physical time", "claim": "convergence as h tends to zero", "proof_debt": "conditional analytic convergence, not arbitrary model equivalence"}
+  ],
+  "inference": {"abduction": "both are candidate representations", "induction": "refinement observed at finite steps", "deduction": "Euler asymptotic limit conditional on transition contract"},
+  "decision": {"criterion": "cross-model error below task-relative tolerance", "tolerance": null, "status": "PENDING_USER_TASK_TOLERANCE"},
+  "tasks": [
+    {"id":"P01","goal":"Validate unit and observation maps","requires":[]},
+    {"id":"P02","goal":"Evaluate admissible rate and step","requires":["P01"]},
+    {"id":"P03","goal":"Run refinement counterexamples in Python","requires":["P02"]},
+    {"id":"P04","goal":"Check conditional convergence proof against preconditions","requires":["P02"]},
+    {"id":"P05","goal":"Determine decision robustness and empirical validation debt","requires":["P03","P04"]}
+  ]
+}

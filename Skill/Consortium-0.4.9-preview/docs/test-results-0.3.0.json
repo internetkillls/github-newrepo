@@ -1,0 +1,155 @@
+{
+  "date": "2026-10-13",
+  "environment": "Node 22.16.0 / Linux sandbox; no live Chrome",
+  "vendored_source_selftests": [
+    {
+      "name": "atomic-json-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "browser-lock-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "chatgpt-operation-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "cli-init-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "context-envelope-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "doctor-status-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "history-artifact-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "message-anchor-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "model-cache-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "modern-message-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "non-interference-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "operation-boundary-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "package-surface-selftest.mjs",
+      "status": "FAIL",
+      "last_error": "uleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '.codex/skills/chatgpt-pro-line/SKILL.md'\n}\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "plugin-package-selftest.mjs",
+      "status": "FAIL",
+      "last_error": ":18\n    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '.codex-plugin/plugin.json'\n}\n\nNode.js v22.16.0\n"
+    },
+    {
+      "name": "project-identity-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "project-state-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "public-concurrency-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "repo-context-bundle-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "repo-context-policy-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "room-fixtures-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "rooms-lifecycle-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "run-envelope-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "session-lineage-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "session-registry-concurrency-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "status-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "transport-negative-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "upload-metadata-selftest.mjs",
+      "status": "PASS",
+      "last_error": ""
+    },
+    {
+      "name": "v1-readiness-selftest.mjs",
+      "status": "FAIL",
+      "last_error": "uleJob.run (node:internal/modules/esm/module_job:274:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '.codex/skills/chatgpt-pro-line/SKILL.md'\n}\n\nNode.js v22.16.0\n"
+    }
+  ],
+  "portable_distribution_tests": {
+    "passed": 14,
+    "total": 14
+  },
+  "vendor_upstream_source_only_tests": [
+    "package-surface-selftest.mjs",
+    "plugin-package-selftest.mjs",
+    "v1-readiness-selftest.mjs"
+  ]
+}

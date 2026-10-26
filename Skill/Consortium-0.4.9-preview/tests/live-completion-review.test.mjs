@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+import {reviewAnchoredResponse} from '../lib/live-completion-review.mjs';
+const sha=s=>createHash('sha256').update(s).digest('hex');
+const expected={conversationUrl:'https://chatgpt.com/c/one',userOrdinal:2,userTextSha256:sha('exact prompt'),assistantTextSha256:sha('exact final response')};
+const good={url:expected.conversationUrl,userOrdinal:2,userText:'exact prompt',assistantText:'exact final response',hasLaterUser:false,assistantCount:1,assistantAnchor:'assistant-one',active:false,terminal:true};
+function options(sample){let now=0;return {stableMs:1000,timeoutMs:10000,pollMs:1000,clock:()=>now,wait:async ms=>{now+=ms},sample};}
+test('independent repeated final evidence qualifies exact response only',async()=>{const r=await reviewAnchoredResponse(null,expected,options(async()=>good));assert.equal(r.status,'RESPONSE_UI_WITNESSED');assert.equal(r.sendAllowed,false);assert(r.samples.length>=3);assert(!JSON.stringify(r).includes('exact prompt'));});
+for(const [name,changes] of [['different conversation',{url:'https://chatgpt.com/c/other'}],['wrong prompt',{userText:'different'}],['later user turn',{hasLaterUser:true}],['missing assistant anchor',{assistantAnchor:null}]])test(name+' refuses a witness',async()=>{const r=await reviewAnchoredResponse(null,expected,options(async()=>({...good,...changes})));assert.equal(r.status,'RESPONSE_UNVERIFIED');});
+test('stable text without affirmative scoped terminal evidence is insufficient',async()=>{const r=await reviewAnchoredResponse(null,expected,options(async()=>({...good,terminal:false})));assert.equal(r.status,'RESPONSE_UNVERIFIED');});
+test('wrong response bytes and active generation cannot qualify',async()=>{for(const changes of [{assistantText:'partial response'},{active:true}]){const r=await reviewAnchoredResponse(null,expected,options(async()=>({...good,...changes})));assert.equal(r.status,'RESPONSE_UNVERIFIED');}});
+test('renewed generation in final independent readback revokes the witness',async()=>{let calls=0;const r=await reviewAnchoredResponse(null,expected,options(async()=>({...good,active:++calls===6})));assert.equal(r.status,'RESPONSE_UNVERIFIED');assert.equal(r.reason,'final_readback_changed');});
+test('assistant identity changes are not silently rebound',async()=>{let calls=0;const r=await reviewAnchoredResponse(null,expected,options(async()=>({...good,assistantAnchor:++calls===1?'one':'two'})));assert.equal(r.reason,'assistant_anchor_changed');});

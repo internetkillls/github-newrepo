@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:coursecraft:quiz-item:v1",
+  "title": "Coursecraft scored single-choice quiz item v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "course_id",
+    "module_id",
+    "subject",
+    "skill_id",
+    "origin",
+    "prompt",
+    "format",
+    "options",
+    "answer",
+    "hints",
+    "explanation",
+    "history",
+    "tip",
+    "contribution",
+    "applied_activities",
+    "visual",
+    "source",
+    "retrieval"
+  ],
+  "properties": {
+    "schema": {
+      "const": "coursecraft.quiz-item/v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "course_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "module_id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "skill_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "enum": [
+        "course-generated",
+        "external-authored",
+        "learner-authored",
+        "adapted-external"
+      ]
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 5
+    },
+    "format": {
+      "const": "single_choice"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "answer": {
+      "type": "string"
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 5
+      },
+      "minItems": 1
+    },
+    "explanation": {
+      "type": "object",
+      "required": [
+        "reason",
+        "common_error",
+        "transfer"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minLength": 10
+        },
+        "common_error": {
+          "type": "string"
+        },
+        "transfer": {
+          "type": "string"
+        }
+      }
+    },
+    "history": {
+      "type": "object",
+      "required": [
+        "claim",
+        "title",
+        "url",
+        "source_locator"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 20
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "source_locator": {
+          "type": "string",
+          "minLength": 3
+        },
+        "person": {
+          "type": "string"
+        },
+        "year": {
+          "type": "string"
+        }
+      }
+    },
+    "tip": {
+      "type": "string",
+      "minLength": 5
+    },
+    "contribution": {
+      "type": "string",
+      "minLength": 5
+    },
+    "applied_activities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "visual": {
+      "type": "object",
+      "required": [
+        "type",
+        "steps",
+        "description"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "remainder",
+            "number_steps",
+            "code_trace",
+            "logic_gate",
+            "stock_flow",
+            "timeline",
+            "argument_map",
+            "other"
+          ]
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "title",
+        "verified"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verified": {
+          "type": "string"
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "required": [
+        "bank",
+        "source_ids",
+        "status"
+      ],
+      "properties": {
+        "bank": {
+          "type": "string"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

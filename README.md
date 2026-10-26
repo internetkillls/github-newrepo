@@ -20,14 +20,18 @@ These are research directions and design aims, not claims that the packages elim
 
 | Archive | Role in the collection |
 | --- | --- |
-| `Skill/Reasoning-0.6.1/` | Reasoning Method Controller (0.6.1): staged task framing, evidence and provenance controls, source lookup, discriminating tests, and repair. Its `source_lookup.py` lists, searches, and reads the bundled source corpus offline. |
-| `Skill/Coursecraft-Lab-0.4.1/` | Coursecraft Lab (0.4.1): course design, source scouting, lessons, and learner-evidence workflows. `build_research_links.py` creates public search links from a subject term and outcome; it does not fetch or verify results. |
-| `Skill/AntiSlop-0.3.1/` | AntiSlop (0.3.1): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
-| `Skill/Consortium-0.2.0/` | Reasoning Consortium Controller (0.2.0): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
+| `Skill/Reasoning-0.6.6/` | Reasoning Method Controller (0.6.6): staged task framing, evidence and provenance controls, source lookup, discriminating tests, and repair. Its `source_lookup.py` lists, searches, and reads the bundled source corpus offline. |
+| `Skill/Coursecraft-Lab-0.5.1/` | Coursecraft Lab (0.5.1): course design, source scouting, lessons, and learner-evidence workflows. `build_research_links.py` creates public search links from a subject term and outcome; it does not fetch or verify results. |
+| `Skill/AntiSlop-0.4.0/` | AntiSlop (0.4.0): conversation reconstruction, scoped output audits, and regression checks. Its optional Python CLI indexes a supplied normalized JSONL transcript, validates evidence-ledger/findings structures, verifies anchors, builds recaps, and emits text-audit signals. It does not query models or establish truth. |
+| `Skill/Consortium-0.4.9-preview/` | Reasoning Consortium Controller (0.4.9-preview): worker roles, persistent-room orchestration, bounded context, status, read/send operations, and closure/merge rules. The optional Node.js CLI delegates to a vendored ChatGPT browser transport; the package contains extensive self-tests. Runtime execution requires its documented local environment and authentication. |
+| `Skill/VibeCode-Transducer-0.8.0/` | VibeCode Transducer (0.8.0): evidence-gated engineering, bounded Python model probes, AREX routing, and local patch-canary source. Packaged code does not imply a hosted MCP service or production deployment. |
+| `Skill/Publication-Pathways-Lab-0.1.0/` | Publication Pathways Lab (0.1.0): publication readiness, channel selection, source discovery, and responsible distribution guidance. |
 | `Skill/VisualPipeline-1.0.1/` | Visual Pipeline (1.0.1): visual ideation, TouchDesigner guidance, and handoffs to Blender and p5.js. `studio.py` validates project specifications and can generate build plans, calculate show cues, and maintain a local SQLite catalog. It is an offline helper, not a renderer or show player. |
 | `Skill/AudioMusicPipeline-2.1.0/` | AudioMusicPipeline (2.1.0): music and audio production skills, a portable project contract, validated offline MIDI export, and a local MCP server. The included Ableton, Max, JUCE, and visual handoff tools require their documented host environments for live use; the MCP capability report does not claim a live DAW connection. |
 
 Together, the packages cover framing, reasoning, learning, output review, coordination, and visual and audio project workflows. The Visual Pipeline and AudioMusicPipeline apply those ideas in creative-production domains; neither by itself validates general claims about human–AI reasoning.
+
+The six controller, learning, review, engineering, and publication packages above were downloaded from their current cloud releases on 2026-10-26. Release IDs, archive hashes, and per-file SHA-256 hashes are recorded in [the sync manifest](Skill/cloud-sync-2026-10-26.json). Earlier version folders remain available as historical snapshots. This sync verifies source identity; it does not establish target runtime behavior.
 
 ## Repository state
 

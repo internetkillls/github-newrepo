@@ -1,0 +1,402 @@
+#!/usr/bin/env node
+import { spawnSync } from "node:child_process";
+import {createHash,randomUUID} from 'node:crypto';
+import {bindingFromReceipt} from '../lib/transport-binding.mjs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { writeJsonAtomic } from "../runtime/chatgpt-pro-line/src/atomic-json.mjs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { event, transduce, promptFromIR, extractSnippets, normalizeCitations, toCsv, readText, saveJson, homeDir, makePostmortem, repairCase, tokensApprox } from "../lib/operations.mjs";
+import { startLocalServer } from "../lib/local-server.mjs";
+import { extractVisibleDom } from "../lib/browser-dom.mjs";
+import { runLocal, localUsage } from "../lib/local-cli.mjs";
+import {assertExecution,initContract,composePacket,sha256} from '../lib/execution-contract.mjs';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const pluginRoot = resolve(here, "..");
+const vendorCli = resolve(pluginRoot, "runtime", "chatgpt-pro-line", "bin", "chatgpt-pro");
+const DEFAULT_ROLES = ["constructor", "independent", "skeptic", "verifier", "merge"];
+
+function arg(name, fallback = "") {
+  const prefix = `--${name}=`;
+  const hit = process.argv.find((v) => v.startsWith(prefix));
+  return hit ? hit.slice(prefix.length) : fallback;
+}
+function flag(name) { return process.argv.includes(`--${name}`); }
+function safe(value, fallback = "default") {
+  const out = String(value || fallback).toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "");
+  return out && out !== "." && out !== ".." ? out : fallback;
+}
+function now() { return new Date().toISOString(); }
+function caseId() { return safe(arg("case", process.env.RCC_CASE || "default")); }
+function caseDir(id = caseId()) { return resolve(process.cwd(), ".devspace", "rcc", id); }
+function statePath(id = caseId()) { return resolve(caseDir(id), "state.json"); }
+function ensureCaseDir(id = caseId()) { mkdirSync(caseDir(id), { recursive: true, mode: 0o700 }); return caseDir(id); }
+function readState(id = caseId()) {
+  const p = statePath(id);
+  if (!existsSync(p)) return null;
+  return JSON.parse(readFileSync(p, "utf8"));
+}
+function writeState(state) {
+  ensureCaseDir(state.caseId);
+  writeJsonAtomic(statePath(state.caseId),state);
+}
+function roles() {
+  const raw = arg("roles", "");
+  return (raw ? raw.split(",") : DEFAULT_ROLES).map((x) => safe(x.trim())).filter(Boolean);
+}
+function aliasFor(id, role) { return safe(`rcc-${id}-${role}`); }
+
+function runVendor(args, { capture = true, env = {} } = {}) {
+  if (!existsSync(vendorCli)) throw new Error(`Vendored ChatGPT transport missing: ${vendorCli}`);
+  const result = spawnSync(process.execPath, [vendorCli, ...args], {
+    cwd: process.cwd(),
+    env: {
+      ...process.env,
+      CHATGPT_REPO_CONTEXT_MODE: process.env.CHATGPT_REPO_CONTEXT_MODE || "off",
+      CHATGPT_THREAD_ECHO: process.env.CHATGPT_THREAD_ECHO || "1",
+      ...env,
+    },
+    encoding: "utf8",
+    stdio: capture ? ["ignore", "pipe", "pipe"] : "inherit",
+  });
+  if (!capture) {
+    if (result.status !== 0) process.exit(result.status ?? 1);
+    return "";
+  }
+  const stdout = result.stdout || "";
+  const stderr = result.stderr || "";
+  if (result.status !== 0) {
+    const e = new Error(`ChatGPT transport failed (${result.status}): ${stderr || stdout}`);
+    e.status = result.status;
+    e.stdout = stdout;
+    e.stderr = stderr;
+    throw e;
+  }
+  return stdout;
+}
+
+function parseJsonOutput(text) {
+  const trimmed = String(text || "").trim();
+  try { return JSON.parse(trimmed); } catch {}
+  const start = trimmed.indexOf("{");
+  const end = trimmed.lastIndexOf("}");
+  if (start >= 0 && end > start) {
+    try { return JSON.parse(trimmed.slice(start, end + 1)); } catch {}
+  }
+  return null;
+}
+
+function workerFromState(state, role) {
+  const key = safe(role || "");
+  const worker = state?.workers?.find((w) => w.role === key);
+  if (!worker) throw new Error(`Worker role not found in case ${state?.caseId || "?"}: ${role}`);
+  if (worker.status !== "BOUND" || !worker.targetId) throw new Error(`Worker ${key} is not verified/bound (status=${worker.status}). Inspect and rebind the room; sending is blocked.`);
+  return worker;
+}
+
+function usage() {
+  return `Reasoning Consortium Controller browser runtime v0.4.9-preview (C0 serial)\n\n` +
+    `Usage:\n` +
+    `  rcc-consortium browser warm\n` +
+    `  rcc-consortium browser doctor\n` +
+    `  rcc-consortium workers spawn --case=<id> [--roles=constructor,independent,skeptic,verifier,merge] [--dry-run]\n` +
+    `  rcc-consortium workers list --case=<id>\n` +
+    `  rcc-consortium worker send --case=<id> --role=<role> (--prompt=<text>|--prompt-file=<path>) [--model=<exact-label>] [--level=<exact-label>] [--upload-file=<path>]\n` +
+    `  rcc-consortium worker read --case=<id> --role=<role>\n` +
+    `  rcc-consortium case status --case=<id>\n` +
+    `  rcc-consortium execution init|check --case=<id> [--stage=dispatch|matrix|closure|release]\n` +
+    `  rcc-consortium execution packet --case=<id> --role=<role> --input-file=<task.md> --output=<packet.md>\n` +
+    `  rcc-consortium transduce --case=<id> (--text=<text>|--input-file=<path>) [--output=<path>]\n` +
+    `  rcc-consortium prompt patch --ir=<path> [--output=<path>]\n` +
+    `  rcc-consortium snippets extract --input=<path> [--output=<path>]\n` +
+    `  rcc-consortium citations export --input=<json> --format=json|csv [--thinking-mode=<label>] [--mode-evidence=verified-visible-receipt] [--output=<path>]\n` +
+    `  rcc-consortium browser dom --url-prefix=<exact-ChatGPT-URL> [--selector=pre,code,svg] [--limit=30]\n` +
+    `  rcc-consortium server start --case=<id> [--port=0] (read-only loopback, foreground)\n` +
+    `  rcc-consortium review prepare --case=<id> [--output=<path>]\n` +
+    `  rcc-consortium doctor [--case=<id>]\n` +
+    `  rcc-consortium repair --case=<id> [--apply] (backup + quarantine only)\n` +
+    `  rcc-consortium local ... (Git, context, AIF adapter; see local help)\n` +
+    `  rcc-consortium selftest\n\n` +
+    `v0.3 can open persistent worker tabs locally but keeps active browser calls C0 serial-safe.\n`;
+}
+
+async function main() {
+  const group = process.argv[2] || "help";
+  const command = process.argv[3] || "";
+
+  if (["help", "--help", "-h"].includes(group)) {
+    console.log(usage());
+    return;
+  }
+
+  if(group==='execution'){
+    const id=caseId(),file=arg('execution-contract')||undefined;let result;
+    if(command==='init')result=initContract(process.cwd(),id,pluginRoot);
+    else if(command==='check')result=assertExecution(process.cwd(),id,{pluginRoot,file,stage:arg('stage','dispatch')});
+    else if(command==='packet'){
+      if(!arg('input-file')||!arg('output')||!arg('role'))throw Error('Provide --role, --input-file and --output');
+      const body=composePacket(process.cwd(),id,arg('role'),readText(arg('input-file')),pluginRoot,file);
+      const out=resolve(arg('output'));mkdirSync(dirname(out),{recursive:true,mode:0o700});writeFileSync(out,body,{flag:'wx',mode:0o600});
+      result={ok:true,path:out,bytes:Buffer.byteLength(body),sha256:sha256(body),status:'PACKET_COMPILED_NOT_SENT'};
+    }else throw Error('execution init|check|packet required');
+    console.log(JSON.stringify(result,null,2));return;
+  }
+
+  if (group === "local") {
+    if (command === "help" || !command) { console.log(localUsage()); return; }
+    console.log(JSON.stringify(runLocal(process.argv.slice(3)), null, 2));
+    return;
+  }
+
+  // Local-first operations; no request to the ChatGPT cloud or hidden reasoning API.
+  if (group === "transduce") {
+    const input = arg("input-file") ? readText(arg("input-file")) : arg("text");
+    const ir = transduce(input,{caseId:caseId(),source:arg("input-file")?'local-file':'cli-argument'});
+    const out=arg("output",resolve(caseDir(ir.caseId),'task-ir.json'));
+    saveJson(resolve(out),ir);
+    event(ir.caseId,'transduce','COMPLETED',{inputTokensApprox:tokensApprox(input),outputTokensApprox:tokensApprox(JSON.stringify(ir)),artifact:resolve(out)});
+    console.log(JSON.stringify({ok:true,output:resolve(out),ir},null,2));return;
+  }
+  if (group === "prompt" && command === "patch") {
+    const file=arg("ir");if(!file)throw new Error('Provide --ir=<path>');
+    const ir=JSON.parse(readText(file));const patch=promptFromIR(ir);
+    const out=resolve(arg('output',resolve(homeDir(ir.caseId),'prompt-patch.md')));
+    mkdirSync(dirname(out),{recursive:true,mode:0o700});writeFileSync(out,patch,{mode:0o600});
+    event(ir.caseId,'prompt.patch','COMPLETED',{inputTokensApprox:tokensApprox(JSON.stringify(ir)),outputTokensApprox:tokensApprox(patch),artifact:out});
+    console.log(JSON.stringify({ok:true,output:out,bytes:Buffer.byteLength(patch)},null,2));return;
+  }
+  if (group === "snippets" && command === "extract") {
+    const file=arg('input');if(!file)throw new Error('Provide --input=<path>');
+    const input=readText(file), result=extractSnippets(input), out=resolve(arg('output',resolve(caseDir(),'snippets.json')));
+    saveJson(out,result);event(caseId(),'snippets.extract','COMPLETED',{inputTokensApprox:tokensApprox(input),outputTokensApprox:tokensApprox(JSON.stringify(result)),count:result.count,artifact:out});
+    console.log(JSON.stringify({ok:true,output:out,count:result.count},null,2));return;
+  }
+  if (group === "citations" && command === "export") {
+    const file=arg('input');if(!file)throw new Error('Provide --input=<path>');
+    const input=readText(file);const data=normalizeCitations(input,{thinkingMode:arg('thinking-mode','unknown'),thinkingEvidence:arg('mode-evidence','not-supplied')});
+    const format=arg('format','json');if(!['json','csv'].includes(format))throw new Error('format must be json or csv');
+    const out=resolve(arg('output',resolve(caseDir(),`citations.${format}`)));
+    mkdirSync(dirname(out),{recursive:true,mode:0o700}); const body=format==='csv'?toCsv(data):JSON.stringify(data,null,2)+'\n';writeFileSync(out,body,{mode:0o600});
+    event(caseId(),'citations.export','COMPLETED',{count:data.items.length,inputTokensApprox:tokensApprox(input),outputTokensApprox:tokensApprox(body),artifact:out,visibleThinkingMode:data.reasoning.visibleMode});
+    console.log(JSON.stringify({ok:true,output:out,count:data.items.length,visibleThinkingMode:data.reasoning.visibleMode},null,2));return;
+  }
+  if (group === 'server' && command === 'start') {
+    const port=Number(arg('port','0'));const {url,caseId:id}=await startLocalServer({caseId:caseId(),port});
+    event(id,'server.start','STARTED',{url,bind:'127.0.0.1',readOnly:true});
+    console.log(JSON.stringify({ok:true,url,caseId:id,foreground:true,stop:'Ctrl+C'},null,2));return;
+  }
+  if (group === 'review' && command === 'prepare') {
+    const packet=makePostmortem(caseId());const out=resolve(arg('output',resolve(caseDir(),'postmortem.json')));saveJson(out,packet);
+    console.log(JSON.stringify({ok:true,output:out,reviewPerformed:false,events:packet.stepCount,tokensApprox:packet.tokensApprox},null,2));return;
+  }
+  if (group === 'doctor') {
+    const result=repairCase(caseId(),{apply:false});
+    console.log(JSON.stringify({ok:result.ok,caseId:caseId(),caseState:result,nodeMajorAtLeast20:Number(process.versions.node.split('.')[0])>=20,browser:'Run browser warm then browser doctor on the LOCAL machine'},null,2));
+    if(!result.ok)process.exitCode=1;return;
+  }
+  if (group === 'repair') {
+    const result=repairCase(caseId(),{apply:flag('apply')});
+    event(caseId(),'case.repair',result.status,{backup:result.backup||null});
+    console.log(JSON.stringify(result,null,2));if(!result.ok)process.exitCode=1;return;
+  }
+  if (group === "browser") {
+    if (command === 'dom') {
+      const port=Number(arg('port',process.env.CHROME_REMOTE_DEBUGGING_PORT||'9222'));
+      const result=await extractVisibleDom({port,urlPrefix:arg('url-prefix','https://chatgpt.com/'),selector:arg('selector','pre, code, svg'),limit:Number(arg('limit','30'))});
+      const out=resolve(arg('output',resolve(caseDir(),'visible-dom.json')));saveJson(out,result);
+      event(caseId(),'browser.dom','COMPLETED',{targetId:result.targetId,items:result.items.length,outputTokensApprox:tokensApprox(JSON.stringify(result)),artifact:out});
+      console.log(JSON.stringify({ok:true,output:out,targetId:result.targetId,items:result.items.length},null,2));return;
+    }
+
+    if (command === "warm") {
+      runVendor(["doctor", "--warm"], { capture: false });
+      return;
+    }
+    if (command === "doctor" || command === "live") {
+      runVendor(["doctor", "--live"], { capture: false });
+      return;
+    }
+    throw new Error(`Unknown browser command: ${command}`);
+  }
+
+  if (group === "workers" && command === "spawn") {
+    const id = caseId();
+    const rs = roles();
+    const maxRoles=Number(arg('max-roles',String(readState(id)?.runtime?.maxRoles||5)));
+    if(!Number.isInteger(maxRoles)||maxRoles<1||maxRoles>32)throw Error('Use --max-roles=1..32; browser sends remain serial.');
+    if (rs.length > maxRoles || new Set(rs).size !== rs.length) throw new Error(`Use 1-${maxRoles} unique worker roles.`);
+    const dry = flag("dry-run");
+    const previous = readState(id);
+    const state = {
+      schemaVersion: 1,
+      caseId: id,
+      createdAt: now(),
+      updatedAt: now(),
+      runtime: {
+        maxRoles,
+        mode: dry ? "DRY-RUN" : "C0_SERIAL_SAFE",
+        transport: "vendored-chatgpt-pro-line",
+        targetOwnership: "one worker role -> one persistent ChatGPT tab/room",
+        parallelGenerationVerified: false,
+      },
+      workers: !dry && previous?.runtime?.mode === "C0_SERIAL_SAFE" ? previous.workers : [],
+    };
+
+    for (const role of rs) {
+      const existing = state.workers.find(w => w.role === role);
+      if (existing?.targetId) continue;
+      if (existing && !dry) throw new Error(`Worker ${role} is not verified (status=${existing.status}). Inspect the existing room and rebind explicitly before a retry; no duplicate tab was created.`);
+      if (state.workers.length >= maxRoles) throw new Error(`Case already contains ${maxRoles} workers.`);
+      const alias = aliasFor(id, role);
+      if (dry) {
+        state.workers.push({ role, alias, status: "PLANNED", targetId: null, conversationUrl: null });
+        continue;
+      }
+      // Persist the pending claim before the external browser side effect. An ambiguous
+      // transport response must not cause the next invocation to create a duplicate tab.
+      const worker = {role,alias,status:"PROVISIONING",targetId:null,conversationUrl:null,spawnedAt:now()};
+      state.workers.push(worker);
+      writeState(state);
+      const stdout = runVendor(["rooms", "new", `--alias=${alias}`]);
+      const parsed = parseJsonOutput(stdout);
+      if (!parsed?.ok) throw new Error(`Worker room ${alias} not confirmed; inspect/rebind before retrying. Receipt: ${stdout.slice(0,1000)}`);
+      const target = parsed.result?.target || {};
+      const room = parsed.result?.room || {};
+      const targetId = target.id || room.targetId || null;
+      if (!targetId) throw new Error(`No verified CDP target ID for room ${alias}. State remains PROVISIONING; inspect/rebind before retrying.`);
+      Object.assign(worker,{
+        status:"BOUND",targetId,
+        conversationUrl:target.url || room.activeConversationUrl || room.conversationUrl || null,
+        room,verifiedAt:now(),
+      });
+      writeState(state);
+    }
+    writeState(state);
+    event(id,'workers.spawn',dry?'PLANNED':'BOUND',{roles:state.workers.map(w=>w.role),actualTargets:state.workers.filter(w=>w.targetId).length});
+    console.log(JSON.stringify({ ok: true, action: "workers.spawn", statePath: statePath(id), state }, null, 2));
+    return;
+  }
+
+  if (group === "workers" && command === "list") {
+    const id = caseId();
+    const state = readState(id);
+    if (!state) throw new Error(`No RCC case state found: ${statePath(id)}`);
+    console.log(JSON.stringify({ ok: true, action: "workers.list", statePath: statePath(id), state }, null, 2));
+    return;
+  }
+
+  if(group==='worker' && command==='provision-unused') {
+    const {provisionUnusedRoom}=await import('../lib/room-lifecycle.mjs');
+    const result=await provisionUnusedRoom(process.cwd(),caseId(),{role:arg('role'),approval:arg('approve'),pluginRoot,port:Number(arg('port','9222'))});
+    event(caseId(),'worker.provision-unused',result.status,{role:arg('role'),targetId:result.targetId,created:result.created});
+    console.log(JSON.stringify(result,null,2));return;
+  }
+
+  if (group === "worker" && command === "send") {
+    const id = caseId();
+    const state = readState(id);
+    if (!state) throw new Error(`No RCC case state found: ${statePath(id)}`);
+    const role = arg("role");
+    const worker = workerFromState(state, role);
+    const promptFile = arg("prompt-file");
+    const prompt = arg("prompt");
+    if (!promptFile && !prompt) throw new Error("Provide --prompt=<text> or --prompt-file=<path>.");
+    const execution=assertExecution(process.cwd(),id,{pluginRoot,file:arg('execution-contract')||undefined,role,prompt:promptFile?readText(promptFile):prompt});
+    const callArgs = ["call", `--alias=${worker.alias}`, "--no-repo-context"];
+    if (promptFile) callArgs.push(`--prompt-file=${resolve(promptFile)}`);
+    else callArgs.push(`--prompt=${prompt}`);
+    for (const value of process.argv.slice(4)) {
+      if (/^--(model|level|upload-file)=/.test(value)) {
+        if (!value.split("=").slice(1).join("=")) throw new Error("Empty model/level/upload-file option.");
+        callArgs.push(value);
+      }
+    }
+    // The original compiled prompt bytes remain intact for queue/receipt binding.
+    // Always supply the pinned instruction sources, including on follow-ups.
+    let controllerReuse=null;
+    if(arg('reuse-controller-from')){
+      const {controllerReuseProof}=await import('../lib/controller-reuse.mjs');
+      controllerReuse=controllerReuseProof({receiptPath:arg('reuse-controller-from'),receiptSha256:arg('reuse-controller-sha256'),worker,root:process.cwd(),bundlePath:execution.controllerBundle});
+    }else callArgs.push(`--upload-file=${execution.controllerBundle}`);
+    const outDir = resolve(caseDir(id), "outputs");
+    mkdirSync(outDir, { recursive: true, mode: 0o700 });
+    if(controllerReuse){
+      const retained=resolve(outDir,`${safe(role)}-controller-prior-${randomUUID()}.json`);
+      writeFileSync(retained,readFileSync(controllerReuse.receiptPath),{flag:'wx'});
+      controllerReuse={...controllerReuse,retainedPriorReceipt:retained};
+      saveJson(resolve(outDir,`${safe(role)}-controller-reuse-${randomUUID()}.json`),controllerReuse);
+    }
+    const receiptPath=resolve(outDir,`${safe(role)}-transport.json`),receiptToken=process.env.RCC_INVOCATION_TOKEN||randomUUID();
+    const stdout = runVendor(callArgs,{env:{RCC_RECEIPT_FILE:receiptPath,RCC_RECEIPT_TOKEN:receiptToken}});
+    const outPath = resolve(outDir, `${safe(role)}-latest.txt`);
+    writeFileSync(outPath, stdout, { mode: 0o600 });
+    event(id,'worker.send','TRANSPORT_RETURNED',{role:worker.role,inputTokensApprox:tokensApprox(promptFile?readText(promptFile):prompt),outputTokensApprox:tokensApprox(stdout),receiptStatus:'vendor exit zero; completion not inferred'});
+    worker.lastSendAt = now();
+    worker.lastOutputPath = outPath;
+    worker.lastReceiptStatus='CAPTURE_UNAVAILABLE';
+    if(existsSync(receiptPath)){
+      try{
+        const receipt=JSON.parse(readFileSync(receiptPath,'utf8'));
+        const promptHash=createHash('sha256').update(promptFile?readFileSync(resolve(promptFile)):prompt).digest('hex');
+        const binding=bindingFromReceipt(receipt,{token:receiptToken,worker,promptHash,root:process.cwd()});
+        Object.assign(worker,{conversationUrl:binding.conversationUrl,conversationId:binding.conversationId,targetId:binding.targetId,lastReceiptStatus:binding.receiptStatus,lastTransportReceiptPath:receiptPath,lastTransportReceiptSha256:createHash('sha256').update(readFileSync(receiptPath)).digest('hex')});
+        delete worker.lastReceiptError;
+      }catch(error){worker.lastReceiptStatus='CAPTURE_UNVERIFIED';worker.lastReceiptError=String(error.message);}
+    }
+    state.updatedAt = now();
+    writeState(state);
+    process.stdout.write(stdout);
+    return;
+  }
+
+  if (group === "worker" && command === "read") {
+    const id = caseId();
+    const state = readState(id);
+    if (!state) throw new Error(`No RCC case state found: ${statePath(id)}`);
+    const role = arg("role");
+    const worker = workerFromState(state, role);
+    const stdout = runVendor(["read", `--alias=${worker.alias}`]);
+    const outDir = resolve(caseDir(id), "outputs");
+    mkdirSync(outDir, { recursive: true, mode: 0o700 });
+    const outPath = resolve(outDir, `${safe(role)}-read-latest.txt`);
+    writeFileSync(outPath, stdout, { mode: 0o600 });
+    event(id,'worker.read','TRANSPORT_RETURNED',{role:worker.role,outputTokensApprox:tokensApprox(stdout),receiptStatus:'vendor exit zero'});
+    worker.lastReadAt = now();
+    worker.lastReadOutputPath = outPath;
+    state.updatedAt = now();
+    writeState(state);
+    process.stdout.write(stdout);
+    return;
+  }
+
+  if (group === "case" && command === "status") {
+    const id = caseId();
+    const state = readState(id);
+    if (!state) throw new Error(`No RCC case state found: ${statePath(id)}`);
+    let rooms = null;
+    try { rooms = parseJsonOutput(runVendor(["rooms", "list"])); } catch (error) { rooms = { ok: false, error: String(error.message || error) }; }
+    console.log(JSON.stringify({ ok: true, action: "case.status", statePath: statePath(id), state, transportRooms: rooms }, null, 2));
+    return;
+  }
+
+  if (group === "selftest") {
+    const checks = {
+      vendorCliExists: existsSync(vendorCli),
+      runtimePackageExists: existsSync(resolve(pluginRoot, "runtime", "chatgpt-pro-line", "package.json")),
+      nodeMajorAtLeast20: Number(process.versions.node.split(".")[0]) >= 20,
+      dryRunAliases: DEFAULT_ROLES.map((role) => aliasFor("selftest", role)),
+    };
+    const ok = Object.entries(checks).filter(([k]) => !["dryRunAliases"].includes(k)).every(([, v]) => Boolean(v));
+    console.log(JSON.stringify({ ok, action: "selftest", pluginRoot, checks }, null, 2));
+    if (!ok) process.exit(1);
+    return;
+  }
+
+  throw new Error(`Unknown command: ${group} ${command}\n\n${usage()}`);
+}
+
+main().catch((error) => {
+  console.error(JSON.stringify({ ok: false, error: String(error?.message || error), status: error?.status || null }, null, 2));
+  process.exit(error?.status || 1);
+});

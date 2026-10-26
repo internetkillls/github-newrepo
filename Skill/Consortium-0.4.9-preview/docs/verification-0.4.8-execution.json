@@ -1,0 +1,260 @@
+{
+  "schema": "rcc.mandatory-execution-verification.v1",
+  "at": "2026-10-19T03:52:25.094766+00:00",
+  "version": "0.4.8-preview",
+  "baseRelease": "pluginrel_6ad58aac22f8819187f65feff06c0042",
+  "scope": "Local real CLI against synthetic transport fixtures, contract checks and existing distribution tests. No live ChatGPT model or native product/UX certification.",
+  "controllerSources": {
+    "versions": {
+      "RMC": "0.6.5",
+      "AntiSlop": "0.4.0"
+    },
+    "files": 74,
+    "bundleSha256": "de711ff5e80f3ce7698a24854ca245d7385bfabd521eb86eb6b6658804a4c776",
+    "coreSha256": "4c884fde29673366268ce281ee54362c7f45995c73c38fa8795bd8c1d914bf48"
+  },
+  "changed": [
+    ".codex-plugin/plugin.json",
+    "README.md",
+    "bin/rcc-consortium",
+    "bin/rcc-deferred",
+    "bin/rcc-queue",
+    "lib/deferred-handoff.mjs",
+    "lib/emergency-delivery.mjs",
+    "lib/operations.mjs",
+    "package.json",
+    "plugin.json",
+    "scripts/forwarding-selftest.mjs",
+    "skills/rcc-deferred-handoff/SKILL.md",
+    "skills/rcc-postproject-interview/SKILL.md",
+    "skills/rcc-queue-manager/SKILL.md",
+    "skills/reasoning-consortium/SKILL.md",
+    "tests/transport-binding-cli.test.mjs"
+  ],
+  "added": [
+    "assets/execution-contract.template.json",
+    "docs/MANDATORY_EXECUTION_v0.4.8.md",
+    "lib/execution-contract.mjs",
+    "policies/CONTROLLER-CORE.md",
+    "policies/CONTROLLER-PREAMBLE.md",
+    "policies/RCC-REQUIRED-CONTROLLERS.zip",
+    "policies/required-controllers.json",
+    "skills/rcc-execution-contract/SKILL.md",
+    "tests/execution-contract.test.mjs",
+    "tests/execution-fixture.mjs"
+  ],
+  "logs": {
+    "full-test-final.log": {
+      "sha256": "274e5fc00ca32d91ca0d7d720d221116e9a8267637196fa8b842790669670686",
+      "summary": {
+        "tests": 167,
+        "pass": 166,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    "execution-final.log": {
+      "sha256": "119a6ec7321703c43acf52e31b027964d7af57a79243dd8178671bc3325c74f5",
+      "summary": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "controllers-and-recovery.log": {
+      "sha256": "47a07f767231885fad0200394ecadc421c302fc56144b1455e2505941ad5b046",
+      "summary": {
+        "tests": 73,
+        "pass": 73,
+        "fail": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "plugin.json version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "plugin.json identity/audience/config preservation",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": ".codex-plugin/plugin.json version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": ".codex-plugin/plugin.json identity/audience/config preservation",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "runtime configuration unchanged beyond version/test script",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "all prior files retained",
+      "status": "PASS",
+      "detail": 186
+    },
+    {
+      "name": "historical Paperfold archive unchanged",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "required source library hash/size",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "all pinned source bytes/paths match",
+      "status": "PASS",
+      "detail": 74
+    },
+    {
+      "name": "inline diagnostic/wake core identity",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\git-controller\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\git-controller\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-completion-safety\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-completion-safety\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-deferred-handoff\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-deferred-handoff\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-deterministic-recovery\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-deterministic-recovery\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-execution-contract\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-execution-contract\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-postproject-interview\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-postproject-interview\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\rcc-queue-manager\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\rcc-queue-manager\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "skills\\reasoning-consortium\\SKILL.md frontmatter",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "skills\\reasoning-consortium\\SKILL.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "README.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "docs\\MANDATORY_EXECUTION_v0.4.8.md Markdown links",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "full-test-final.log completed without failures",
+      "status": "PASS",
+      "detail": {
+        "tests": 167,
+        "pass": 166,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "name": "execution-final.log completed without failures",
+      "status": "PASS",
+      "detail": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "controllers-and-recovery.log completed without failures",
+      "status": "PASS",
+      "detail": {
+        "tests": 73,
+        "pass": 73,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "final complete suite recorded",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "status": "PASS",
+  "limits": [
+    "Structural gates cannot prove internal model compliance or truth of every receipt.",
+    "Custom lower-level runners need explicit policy/gate integration; cloud mode is policy only.",
+    "One inherited parallel run timed out a resolver fixture; isolated and serial runs are recorded separately.",
+    "One Windows symlink privilege test is skipped rather than certified.",
+    "Account publication does not hot-patch an installed cache or active process."
+  ]
+}

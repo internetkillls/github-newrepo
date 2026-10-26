@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {prepareHandoff,status,armHandoff,runService,runnerTick,transportExecutor,wakeCodex,claimWake} from '../lib/deferred-handoff.mjs';
+import {assertExecution} from '../lib/execution-contract.mjs';
+const pluginRoot=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+const root=process.cwd();
+const args=process.argv.slice(2);
+const op=key=>{const value=args.find(x=>x.startsWith(`--${key}=`));return value?.slice(key.length+3)??null;};
+const [group,action]=args;
+async function main(){
+ if(group!=='handoff')throw new Error('Usage: rcc-deferred handoff prepare|status|arm|run|tick|wake --case=CASE');
+ const id=op('case');if(!id)throw new Error('Provide --case=CASE');
+ if(['prepare','arm','tick','run'].includes(action))assertExecution(root,id,{pluginRoot});
+ let result;
+ if(action==='prepare')result=prepareHandoff(root,{caseId:id,sessionId:op('session'),autoResume:args.includes('--auto-resume'),autoReview:args.includes('--auto-review'),workspace:op('workspace')||root});
+ else if(action==='status')result=status(root,id)||{status:'NO_HANDOFF'};
+ else if(action==='arm')result=armHandoff(root,{caseId:id,sessionId:op('session'),marker:op('marker')});
+ else if(action==='wake')result=await wakeCodex(root,id,{manual:true,approval:op('approve')});
+ else if(action==='tick'||action==='run'){
+  const controller=new AbortController();process.once('SIGINT',()=>controller.abort());process.once('SIGTERM',()=>controller.abort());
+  const options={dispatch:transportExecutor(pluginRoot,root),wake:(c,caseId)=>wakeCodex(c,caseId)};
+  if(args.includes('--auto-emergency')){const {recoverEmergency}=await import('../lib/emergency-delivery.mjs');options.emergency=recoverEmergency;}
+  result=action==='tick'?await runnerTick(root,id,options):await runService(root,id,{...options,signal:controller.signal});
+ }else throw new Error('Unknown action');
+ process.stdout.write(JSON.stringify(result,null,2)+'\n');
+}
+main().catch(e=>{console.error(JSON.stringify({ok:false,error:String(e.message||e)}));process.exitCode=1;});

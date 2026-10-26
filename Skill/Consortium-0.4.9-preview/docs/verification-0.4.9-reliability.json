@@ -1,0 +1,40 @@
+{
+  "version": "0.4.9-preview",
+  "date": "2026-10-22",
+  "parentReleaseId": "pluginrel_6ad594091a1c819190a8ccdbe2226bf5",
+  "audit": "Paperfold BUILD10 reliability audit 2026-10-22",
+  "tests": {
+    "command": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "total": 179,
+    "passed": 178,
+    "failed": 0,
+    "skipped": 1,
+    "exitCode": 0,
+    "skipReason": "Windows file-symlink privilege unavailable; symlink-target rejection not verified on this host",
+    "logSha256": "e2690fc21cd8cafee2fdfef959c1fe9d659d5327b6c9d3e52cc66022e1965d4a"
+  },
+  "regressionTests": {
+    "total": 12,
+    "passed": 12,
+    "scope": "Offline DOM, queue, exact source, lifecycle and negative-control fixtures"
+  },
+  "selftests": {
+    "runtime": 0,
+    "distribution": 0,
+    "completionEvidence": 0,
+    "completionInstaller": 0,
+    "modernMessage": 0,
+    "syntaxChecked": 138,
+    "syntaxFailures": 0
+  },
+  "earlierFailuresRetained": "Parallel test runs hit an existing 10-second Windows subprocess timeout. The affected resolver test passed in isolation and the entire final suite passed serially. No assertion was disabled.",
+  "liveBrowser": "UNVERIFIED; no live ChatGPT Send performed by this update",
+  "installedCache": "UNCHANGED; account update does not hot-patch existing 0.4.8-preview cache or Paperfold case helpers",
+  "controllerLibrary": "Unchanged actual pinned RMC0.6.5/AntiSlop0.4.0 source ZIP",
+  "RMC_AntiSlop_review": {
+    "finding": "Earliest transport failure repaired and exercised through installed-style functions; transport, bytes and behavior remain distinct",
+    "negativeControl": "Stale receipt, clicked uncertainty, committed history, wrong role, changed bundle and invalid JSON identity remain rejected",
+    "residual": "No live browser/restart/ten-worker throughput or native Paperfold/Mac result claimed",
+    "originalRoleInterviews": "not_applicable: this plugin source update used no browser reasoning workers; existing Paperfold role reviews retained unchanged"
+  }
+}

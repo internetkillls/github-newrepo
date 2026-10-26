@@ -1,0 +1,22 @@
+[
+  {
+    "case": "dispatcher_euler_refinement.json",
+    "gate": "ORIGINAL_CLAIM_REFUTED_REFINED_VARIANT_PASSES",
+    "initial_outcome": "REFUTED_BY_WITNESS",
+    "refinement_count": 2,
+    "refinement_status": "REFINEMENT_MEETS_DECLARED_TOLERANCE",
+    "code_mutated": false,
+    "sha256": "fa2bb59aa84044f10e28413f236d26f4c21d35f571b9db74b4d7fcb3d0a7ef85",
+    "task_count": 17
+  },
+  {
+    "case": "dispatcher_inverse_blocked.json",
+    "gate": "MODEL_CLAIM_REFUTED_OR_NONIDENTIFIABLE",
+    "initial_outcome": "REFUTED_BY_WITNESS",
+    "refinement_count": 0,
+    "refinement_status": "NOT_APPLICABLE",
+    "code_mutated": false,
+    "sha256": "7ad38ce787e0a6afb89a256fd3493f4cb4bcdd30318ab5454b2c258d2a3093e0",
+    "task_count": 16
+  }
+]

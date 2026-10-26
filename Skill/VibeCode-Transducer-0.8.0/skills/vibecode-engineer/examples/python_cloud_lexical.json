@@ -1,0 +1,26 @@
+{
+  "math_problem": {
+    "goal": "Execute a bounded alpha/beta lexical observation and derive warranted engineering tasks",
+    "claim_type": "semantic",
+    "observation_kind": "lexical_spans",
+    "source_id": "SECOND_ORDER_MODELS_v1.3.md",
+    "features": {
+      "sentence_bounded_tokens": true,
+      "traceable_offsets": true,
+      "defined_denominator": true,
+      "overlapping_windows": true,
+      "censored_endpoints": true
+    }
+  },
+  "observation_payload": {
+    "kind": "lexical_spans",
+    "paragraphs": [
+      "Dengan demikian, bukti pertama dijelaskan. Bukti ini diulang.",
+      "Namun argumen berubah. Dengan demikian, klaim baru dibuat.",
+      "Tidak ada penanda berikutnya."
+    ],
+    "anchor": "Dengan demikian",
+    "boundary": "Kesimpulannya",
+    "tracked": ["bukti", "klaim"]
+  }
+}

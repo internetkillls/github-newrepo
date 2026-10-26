@@ -1,0 +1,22 @@
+VCT cross-representation v0.6 Python verification, 2026-10-26 (Asia/Jakarta)
+
+Commands:
+python -m unittest discover -s tests -p 'test_multimodel*.py' -v
+  Ran 74 tests in 0.008s — OK
+python -m unittest discover -s tests -p 'test_heuristic*.py' -v
+  Ran 24 tests in 0.006s — OK
+python -m unittest discover -s tests -p 'test_*math*.py' -v
+  Ran 30 tests in 0.047s — OK
+python runtime/multimodel_cli.py --spec examples/multimodel_discrete_continuum.json
+  decision_gate = CONDITIONAL_NUMERIC_EVIDENCE
+  probe outcome = CONDITIONAL_PASS
+python runtime/multimodel_cli.py --spec examples/multimodel_hidden_state.json
+  decision_gate = REVISE_CLAIM_OR_MODEL
+  probe outcome = REFUTED_BY_WITNESS
+python runtime/vct_math_cli.py --spec examples/python_cloud_linear_inverse.json
+  decision_gate = PYTHON_EVIDENCE_AVAILABLE
+  legacy math_python_execution.state = EXECUTED
+
+Totals: 128 executed tests across available legacy 0.2/0.3/0.4 math slices and new 0.6 slice.
+Not covered: old v0.1 static transducer tests, hosted MCP handshake, AREX integration runtime, arbitrary PDE/graph/topology methods, empirical target behavior, or formal theorem proof.
+The legacy slices were reconstructed from prior update tarballs, not from a fresh complete current-release archive. Current plugin v0.5.0 AREX files are retained by partial overlay and have not been rewritten.

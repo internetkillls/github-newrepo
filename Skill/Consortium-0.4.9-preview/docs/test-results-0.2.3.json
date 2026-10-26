@@ -1,0 +1,37 @@
+[
+  {
+    "check": "scripts/runtime-selftest.mjs",
+    "status": "PASS",
+    "output": "{\n  \"ok\": true,\n  \"tests\": [\n    \"help\",\n    \"selftest\",\n    \"dry-run-spawn\",\n    \"atomic-json-fsync\"\n  ]\n}"
+  },
+  {
+    "check": "scripts/forwarding-selftest.mjs",
+    "status": "PASS",
+    "output": "{\"ok\":true,\"tested\":[\"model-level-upload-forwarded\",\"empty-option-rejected\",\"missing-role-rejected\"]}"
+  },
+  {
+    "check": "runtime/chatgpt-pro-line/scripts/transport-negative-selftest.mjs",
+    "status": "PASS",
+    "output": "{\"ok\":true,\"tested\":[\"missing-target\",\"unrelated-tab-refused\",\"warm-create-failure\",\"warm-invalid-target\",\"positive-target\",\"positive-selection\",\"wrong-level\",\"wrong-model\",\"missing-readback\",\"offline-endpoint\"]}\n{\"ok\":true,\"tested\":[\"upload-pending-rejected\",\"upload-failed-rejected\",\"upload-absent-rejected\",\"upload-ready\"]}"
+  },
+  {
+    "check": "runtime/chatgpt-pro-line/scripts/doctor-status-selftest.mjs",
+    "status": "PASS",
+    "output": "{\n  \"ok\": true,\n  \"tested\": \"doctor-status\"\n}"
+  },
+  {
+    "check": "runtime/chatgpt-pro-line/scripts/upload-metadata-selftest.mjs",
+    "status": "PASS",
+    "output": "{\n  \"ok\": true,\n  \"tested\": \"upload-metadata\"\n}"
+  },
+  {
+    "check": "runtime/chatgpt-pro-line/scripts/modern-message-selftest.mjs",
+    "status": "PASS",
+    "output": "{\"ok\":true,\"tested\":[\"modern-user-assistant\",\"empty-thread-not-sent\",\"sidebar-not-message\"]}"
+  },
+  {
+    "check": "runtime/chatgpt-pro-line/scripts/message-anchor-selftest.mjs",
+    "status": "PASS",
+    "output": "{\n  \"ok\": true,\n  \"tested\": \"message-anchor\"\n}"
+  }
+]

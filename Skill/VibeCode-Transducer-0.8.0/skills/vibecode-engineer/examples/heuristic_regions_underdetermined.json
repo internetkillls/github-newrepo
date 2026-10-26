@@ -1,0 +1,6 @@
+{
+  "goal":"Distinguish simple exponential pattern from maximum 3D plane region count on bounded cases",
+  "claim_type":"abductive",
+  "representation":{"unit":{"name":"3D max-region count","kind":"property","measurement_scale":"count","dimension_kind":"dimensionless","identity_rule":"one connected 3D region in general position arrangement","boundary_rule":"partition induced by n distinct planes","source_ref":"Mahajan Street-Fighting Mathematics 6.2"},"operations":["count"],"required_relations":["general_position"],"preserved_relations":["general_position"]},
+  "approximation":{"method":"candidate_discrimination","candidates":["pow2","regions3"],"observations":[{"x":0,"y":1},{"x":1,"y":2},{"x":2,"y":4},{"x":3,"y":8}]}
+}

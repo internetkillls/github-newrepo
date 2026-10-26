@@ -1,0 +1,74 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "joshuagabrielagathon@gmail.com",
+    "name": "J. G. Agathon"
+  },
+  "description": "Evidence-gated Vibe coding with Mahajan heuristics, cross-representation Python, AREX metadata routing, and signed-policy local patch-canary orchestration.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive"
+        ],
+        "category": "Productivity",
+        "defaultPrompt": [
+          "Use VibeCode Transducer to inspect my coding task and show the implementation plan, donor candidates, gaps, and verification tests.",
+          "Audit this repository bug. Distinguish observed evidence from hypotheses, propose a minimal patch, and show negative tests.",
+          "Explain how to run the VibeCode Python transducer locally and connect the read-only MCP service from an eligible ChatGPT workspace."
+        ],
+        "developerName": "J. G. Agathon",
+        "displayName": "VibeCode Transducer",
+        "longDescription": "Signed-policy local patch canary, persistent SQLite receipts, Git SHA-bound snapshots, and fixed test-before/after checks. Real repository tests, MCP hosting, PRs and deployment remain unverified.",
+        "shortDescription": "Vibe coding with evidence"
+      }
+    }
+  },
+  "keywords": [
+    "vibecoding",
+    "code-review",
+    "repository-analysis",
+    "python",
+    "testing",
+    "mcp",
+    "mathematical-modeling",
+    "heuristic-selection",
+    "model-driven-engineering",
+    "knowledge-representation",
+    "inverse-problems",
+    "python-first",
+    "cloud-mathematical-execution",
+    "decision-support",
+    "measurement-theory",
+    "model-admissibility",
+    "abduction",
+    "induction",
+    "deduction",
+    "approximation",
+    "counterexample",
+    "arex-skill",
+    "disco",
+    "repository-skill-routing",
+    "progressive-disclosure",
+    "skill-verification",
+    "cross-representation-modeling",
+    "discrete-continuum",
+    "multimodel-inference",
+    "observability",
+    "identifiability",
+    "numerical-verification",
+    "proof-obligations",
+    "heuristic-dispatcher",
+    "model-refinement",
+    "counterexample-testing",
+    "arex-discovery-bridge",
+    "conditional-engineering-task-graph",
+    "signed-policy",
+    "git-snapshot",
+    "fail-before-pass-after",
+    "durable-jobs",
+    "autopatcher-canary"
+  ],
+  "name": "vibecode-transducer",
+  "version": "0.8.0"
+}
